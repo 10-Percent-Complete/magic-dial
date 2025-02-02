@@ -1,0 +1,11 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "ESP32-C6-WROOM-1-N8")(type "KiCad")(uri "C:/GitHub/magic-dial/electrical hardware/EDA Models/ESP32_C6_WROOM_1_N8/ESP32-C6-WROOM-1-N8.kicad_sym")(options "")(descr ""))
+  (lib (name "GSB3C3133DS2HR")(type "KiCad")(uri "C:/GitHub/magic-dial/electrical hardware/EDA Models/GSB3C3133DS2HR/GSB3C3133DS2HR.kicad_sym")(options "")(descr ""))
+  (lib (name "2025-02-02_05-55-45")(type "KiCad")(uri "C:/GitHub/magic-dial/electrical hardware/EDA Models/INA240A1QPWRQ1/KiCADv6/2025-02-02_05-55-45.kicad_sym")(options "")(descr ""))
+  (lib (name "2025-02-02_05-35-14")(type "KiCad")(uri "C:/GitHub/magic-dial/electrical hardware/EDA Models/MAQ430GQE_AEC1_Z/KiCADv6/2025-02-02_05-35-14.kicad_sym")(options "")(descr ""))
+  (lib (name "MCP6021T-E_OT")(type "KiCad")(uri "C:/GitHub/magic-dial/electrical hardware/EDA Models/MCP6021T_E_OT/MCP6021T-E_OT.kicad_sym")(options "")(descr ""))
+  (lib (name "2025-02-02_05-33-04")(type "KiCad")(uri "C:/GitHub/magic-dial/electrical hardware/EDA Models/TMC6300_LA_T/KiCADv6/2025-02-02_05-33-04.kicad_sym")(options "")(descr ""))
+  (lib (name "TLV75733PDBVR")(type "KiCad")(uri "C:/GitHub/magic-dial/electrical hardware/EDA Models/TLV75733PDBVR/TLV75733PDBVR.kicad_sym")(options "")(descr ""))
+  (lib (name "LM1085ISX-5.0_NOPB")(type "KiCad")(uri "C:/GitHub/magic-dial/electrical hardware/EDA Models/LM1085ISX_5_0_NOPB/LM1085ISX-5.0_NOPB.kicad_sym")(options "")(descr ""))
+)
