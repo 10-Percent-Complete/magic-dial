@@ -4,46 +4,80 @@
 use esp_backtrace as _;
 use esp_hal::{
     delay::Delay,
-    prelude::*,
-    spi::{
-        master::{Spi, Config},
-        SpiMode}
+    Config,
+    main,
+    i2c::master::{I2c, Config as I2cConfig}
 };
 use log::info;
-use ws2812_spi::Ws2812;
-use smart_leds::{SmartLedsWrite, RGB8};
 
-#[entry]
+#[main]
 fn main() -> ! {
-    let peripherals = esp_hal::init({
-        let mut config = esp_hal::Config::default();
-        config.cpu_clock = CpuClock::max();
-        config
-    });
+    /* Initialize esp32 hardware */
+    let peripherals = esp_hal::init(Config::default());
 
+    /* Initialize log functionality */
     esp_println::logger::init_logger_from_env();
+
+    /* Create delay object to use for code delays */
     let delay = Delay::new();
 
-    let mosi = peripherals.GPIO2;
-    let rgb_spi = Spi::new_with_config(
-        peripherals.SPI2,
-        Config {
-            frequency: 3u32.MHz(),
-            mode: SpiMode::Mode0,
-            ..Config::default()
-        },
-    ).with_mosi(mosi);
+    /* Initialize i2c controller in EPS32 */
+    let mut i2c = I2c::new(
+        peripherals.I2C0,
+        I2cConfig::default()
+        )
+        .unwrap()
+        .with_sda(peripherals.GPIO21)
+        .with_scl(peripherals.GPIO22);
 
-    let mut rgb_led = Ws2812::new(rgb_spi);
-    let on_led: [RGB8; 1] = [RGB8{r:0x10, g:0x10, b:0x10}];
-    let off_led: [RGB8; 1] = [RGB8{r:0, g:0, b:0}];
+    /* I2C address for hall encoder IC */
+    let tmag_i2c_addr = 0x22;
+
+    /* Variables to store raw encoder register readings */
+    let mut x_msb = [0u8; 1];
+    let mut x_lsb = [0u8; 1];
+    let mut y_msb = [0u8; 1];
+    let mut y_lsb = [0u8; 1];
+    let mut z_msb = [0u8; 1];
+    let mut z_lsb = [0u8; 1];
+
+    /* @todo Tmag encoder settings for fast conversion
+     *
+     * Device config 1 to 1
+     * Sensor config 1 to 0x79
+     * T config to 1
+     * Int config to 0xA4
+     * Device config 2 to 0x22
+     * Wait for INT signal to assert low for conversion completion. At this point read T,X,Y,Z with
+     * a single read command 
+     */
+
+    /* Enable x,y,z measurement registers */
+    i2c.write(tmag_i2c_addr, &[0x02, 0x79]).ok();
+
+    /* Enable the largest gain for each axis */
+    i2c.write(tmag_i2c_addr, &[0x03, 0x03]).ok();
 
     loop {
-        info!("On");
-        rgb_led.write(on_led.iter().cloned()).unwrap();
-        delay.delay(500.millis());
-        info!("Off");
-        rgb_led.write(off_led.iter().cloned()).unwrap();
-        delay.delay(500.millis());
+        /* Read x position register */
+        i2c.write_read(tmag_i2c_addr, &[0x12], &mut x_msb).ok();
+        i2c.write_read(tmag_i2c_addr, &[0x13], &mut x_lsb).ok();
+
+        /* Read y position register */
+        i2c.write_read(tmag_i2c_addr, &[0x14], &mut y_msb).ok();
+        i2c.write_read(tmag_i2c_addr, &[0x15], &mut y_lsb).ok();
+
+        /* Read z position register */
+        i2c.write_read(tmag_i2c_addr, &[0x16], &mut z_msb).ok();
+        i2c.write_read(tmag_i2c_addr, &[0x17], &mut z_lsb).ok();
+
+        /* Combine both readings into single 16 bit value */
+        let x_value = (x_msb[0] as u16) << 8 | (x_lsb[0] as u16);
+        let y_value = (y_msb[0] as u16) << 8 | (y_lsb[0] as u16);
+        let z_value = (z_msb[0] as u16) << 8 | (z_lsb[0] as u16);
+
+        /* Report readings */
+        info!("X: 0x{:X}, Y: 0x{:X}, Z: 0x{:X}", x_value, y_value, z_value);
+        delay.delay_millis(100);
     }
 }
