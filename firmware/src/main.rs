@@ -10,6 +10,9 @@ use esp_hal::{
 };
 use log::info;
 
+mod drivers;
+
+
 #[main]
 fn main() -> ! {
     /* Initialize esp32 hardware */
@@ -22,7 +25,7 @@ fn main() -> ! {
     let delay = Delay::new();
 
     /* Initialize i2c controller in EPS32 */
-    let mut i2c = I2c::new(
+    let i2c = I2c::new(
         peripherals.I2C0,
         I2cConfig::default()
         )
@@ -30,16 +33,20 @@ fn main() -> ! {
         .with_sda(peripherals.GPIO21)
         .with_scl(peripherals.GPIO22);
 
+   /* Initialize encoder driver object */
+    let mut encoder = drivers::tmag5273::Tmag5273::new(i2c);
+
     /* I2C address for hall encoder IC */
-    let tmag_i2c_addr = 0x22;
+    // let encoder_addr = 0x22;
 
     /* Variables to store raw encoder register readings */
-    let mut x_msb = [0u8; 1];
-    let mut x_lsb = [0u8; 1];
-    let mut y_msb = [0u8; 1];
-    let mut y_lsb = [0u8; 1];
-    let mut z_msb = [0u8; 1];
-    let mut z_lsb = [0u8; 1];
+    // let mut x_msb = [0u8; 1];
+    // let mut x_lsb = [0u8; 1];
+    // let mut y_msb = [0u8; 1];
+    // let mut y_lsb = [0u8; 1];
+    // let mut z_msb = [0u8; 1];
+    // let mut z_lsb = [0u8; 1];
+    //
 
     /* @todo Tmag encoder settings for fast conversion
      *
@@ -53,31 +60,38 @@ fn main() -> ! {
      */
 
     /* Enable x,y,z measurement registers */
-    i2c.write(tmag_i2c_addr, &[0x02, 0x79]).ok();
+    // i2c.write(encoder_addr, &[0x02, 0x79]).ok();
 
     /* Enable the largest gain for each axis */
-    i2c.write(tmag_i2c_addr, &[0x03, 0x03]).ok();
+    // i2c.write(encoder_addr, &[0x03, 0x03]).ok();
+
 
     loop {
+        if let Ok(id_value) =  encoder.read_device_id() {
+            info!("ID: 0x{:X}", id_value);
+        }
+        // i2c.write_read(encoder_addr, &[0x0D], &mut id_value).ok();
+
+
         /* Read x position register */
-        i2c.write_read(tmag_i2c_addr, &[0x12], &mut x_msb).ok();
-        i2c.write_read(tmag_i2c_addr, &[0x13], &mut x_lsb).ok();
+        // i2c.write_read(encoder_addr, &[0x12], &mut x_msb).ok();
+        // i2c.write_read(encoder_addr, &[0x13], &mut x_lsb).ok();
 
         /* Read y position register */
-        i2c.write_read(tmag_i2c_addr, &[0x14], &mut y_msb).ok();
-        i2c.write_read(tmag_i2c_addr, &[0x15], &mut y_lsb).ok();
+        // i2c.write_read(encoder_addr, &[0x14], &mut y_msb).ok();
+        // i2c.write_read(encoder_addr, &[0x15], &mut y_lsb).ok();
 
         /* Read z position register */
-        i2c.write_read(tmag_i2c_addr, &[0x16], &mut z_msb).ok();
-        i2c.write_read(tmag_i2c_addr, &[0x17], &mut z_lsb).ok();
+        // i2c.write_read(encoder_addr, &[0x16], &mut z_msb).ok();
+        // i2c.write_read(encoder_addr, &[0x17], &mut z_lsb).ok();
 
         /* Combine both readings into single 16 bit value */
-        let x_value = (x_msb[0] as u16) << 8 | (x_lsb[0] as u16);
-        let y_value = (y_msb[0] as u16) << 8 | (y_lsb[0] as u16);
-        let z_value = (z_msb[0] as u16) << 8 | (z_lsb[0] as u16);
+        // let x_value = (x_msb[0] as u16) << 8 | (x_lsb[0] as u16);
+        // let y_value = (y_msb[0] as u16) << 8 | (y_lsb[0] as u16);
+        // let z_value = (z_msb[0] as u16) << 8 | (z_lsb[0] as u16);
 
         /* Report readings */
-        info!("X: 0x{:X}, Y: 0x{:X}, Z: 0x{:X}", x_value, y_value, z_value);
+        // info!("ID: 0x{:X}, X: 0x{:X}, Y: 0x{:X}, Z: 0x{:X}", id_value[0], x_value, y_value, z_value);
         delay.delay_millis(100);
     }
 }
