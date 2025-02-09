@@ -2,7 +2,6 @@ use embedded_hal::i2c::I2c;
 
 pub const DEFAULT_I2C_ADDR: u8 = 0x22;
 
-
 #[allow(dead_code)]
 #[repr(u8)]
 #[derive(Copy, Clone)]
@@ -35,16 +34,117 @@ pub enum Register {
     AngleResultMsb = 0x19,
     AngleResultLsb = 0x1A,
     MagnitudeResult = 0x1B,
-    DeviceStatus = 0x1C
+    DeviceStatus = 0x1C,
 }
 
+#[allow(dead_code)]
+#[repr(u8)]
+#[derive(Clone, Copy)]
+pub enum MagneticConfig {
+    DisableAll = 0x0,
+    EnableX = 0x1,
+    EnableY = 0x2,
+    EnableXY = 0x3,
+    EnableZ = 0x4,
+    EnableZX = 0x5,
+    EnableYZ = 0x6,
+    EnableXYZ = 0x7,
+    EnableXYX = 0x8,
+    EnableYXY = 0x9,
+    EnableYZY = 0xA,
+    EnableXZX = 0xB,
+}
+
+#[allow(dead_code)]
+#[repr(u8)]
+#[derive(Clone, Copy)]
+pub enum SleepConfig {
+    Sleep1ms = 0x0,
+    Sleep5ms = 0x1,
+    Sleep10ms = 0x2,
+    Sleep15ms = 0x3,
+    Sleep20ms = 0x4,
+    Sleep30ms = 0x5,
+    Sleep50ms = 0x6,
+    Sleep100ms = 0x7,
+    Sleep500ms = 0x8,
+    Sleep1000ms = 0x9,
+    Sleep2000ms = 0xA,
+    Sleep5000ms = 0xB,
+    Sleep20000ms = 0xC,
+}
+
+#[allow(dead_code)]
+#[repr(u8)]
+#[derive(Clone, Copy)]
+pub enum AngleConfig {
+    Disable = 0x0,
+    EnableXY = 0x1,
+    EnableYZ = 0x2,
+    EnableXZ = 0x3,
+}
+
+#[allow(dead_code)]
+#[repr(u8)]
+#[derive(Clone, Copy)]
+pub enum ConversionRate {
+    Average1x = 0x0,
+    Average2x = 0x1,
+    Average4x = 0x2,
+    Average8x = 0x3,
+    Average16x = 0x4,
+    Average32x = 0x5,
+}
+
+#[allow(dead_code)]
+#[repr(u8)]
+#[derive(Clone, Copy)]
+pub enum I2cReadMode {
+    I2cRead3 = 0x0,
+    I2cRead2 = 0x1,
+    I2cRead1 = 0x2,
+}
+
+#[allow(dead_code)]
+#[repr(u8)]
+#[derive(Clone, Copy)]
+pub enum LowMode {
+    LowPower = 0x0,
+    LowNoise = 0x1,
+}
+
+#[allow(dead_code)]
+#[repr(u8)]
+#[derive(Clone, Copy)]
+pub enum I2cGlitchFilter {
+    On = 0x0,
+    Off = 0x1,
+}
+
+#[allow(dead_code)]
+#[repr(u8)]
+#[derive(Clone, Copy)]
+pub enum TriggerMode {
+    Default = 0x0,
+    Interrupt = 0x1,
+}
+
+#[allow(dead_code)]
+#[repr(u8)]
+#[derive(Clone, Copy)]
+pub enum OpMode {
+    Standby = 0x0,
+    Sleep = 0x1,
+    Continuous = 0x2,
+    WakeAndSleep = 0x3,
+}
 
 #[derive(Copy, Clone, Debug)]
 pub struct Tmag5273<I2C> {
     i2c: I2C,
-    address: u8
+    address: u8,
 }
-
+#[allow(dead_code)]
 impl<I2C: I2c> Tmag5273<I2C> {
     pub fn new(i2c: I2C, address: u8) -> Self {
         Self { i2c, address }
@@ -60,36 +160,94 @@ impl<I2C: I2c> Tmag5273<I2C> {
         Ok(temp[0])
     }
 
-    pub fn config_temp(&mut self, threshold: u8, enable: bool) -> Result<(), I2C::Error> {
-        let val = (threshold << 1) | (enable as u8);
-        Ok(self.write_register_8(Register::TConfig, val)?) 
+    pub fn config_magnetic_channel(&mut self, config: MagneticConfig) -> Result<(), I2C::Error> {
+        /* Read contents of register and ensure to not overwrite */
+        let mut val = self.read_register_8(Register::SensorConfig1)?;
+        val &= !(0xF << 4);
+        val |= (config as u8) << 4;
+
+        self.write_register_8(Register::SensorConfig1, val)
     }
 
-    pub fn read_temp(&mut self) -> Result <u16, I2C::Error> {
+    pub fn config_temp(&mut self, threshold: u8, enable: bool) -> Result<(), I2C::Error> {
+        let val = (threshold << 1) | (enable as u8);
+        self.write_register_8(Register::TConfig, val)
+    }
+
+    pub fn config_operating_mode(&mut self, op_mode: OpMode) -> Result<(), I2C::Error> {
+        /* Read contents of register and ensure to not overwrite */
+        let mut val = self.read_register_8(Register::DeviceConfig2)?;
+        val &= !(0x3);
+        val |= op_mode as u8;
+
+        self.write_register_8(Register::DeviceConfig2, val)
+    }
+
+    pub fn config_angle(&mut self, config: AngleConfig) -> Result<(), I2C::Error> {
+        /* Read contents of register and ensure to not overwrite */
+        let mut val = self.read_register_8(Register::SensorConfig2)?;
+        val &= !(0x3 << 2);
+        val |= (config as u8) << 2;
+
+        self.write_register_8(Register::SensorConfig2, val)
+    }
+
+    pub fn config_conversion(&mut self, conversion: ConversionRate) -> Result<(), I2C::Error> {
+        /* Read contents of register and ensure to not overwrite */
+        let mut val = self.read_register_8(Register::DeviceConfig1)?;
+        val &= !(0x7 << 2);
+        val |= (conversion as u8) << 2;
+
+        self.write_register_8(Register::DeviceConfig1, val)
+    }
+
+    pub fn read_manufacturer_id(&mut self) -> Result<u16, I2C::Error> {
+        let msb = self.read_register_8(Register::ManufacturerIdMsb)?;
+        let lsb = self.read_register_8(Register::ManufacturerIdLsb)?;
+
+        Ok(u16::from_be_bytes([msb, lsb]))
+    }
+
+    pub fn read_device_status(&mut self) -> Result<u8, I2C::Error> {
+        self.read_register_8(Register::DeviceStatus)
+    }
+
+    pub fn read_temp(&mut self) -> Result<u16, I2C::Error> {
         let msb = self.read_register_8(Register::TMsbResult)?;
         let lsb = self.read_register_8(Register::TLsbResult)?;
 
         Ok(u16::from_be_bytes([msb, lsb]))
     }
 
-    pub fn read_x(&mut self) -> Result <u16, I2C::Error> {
+    pub fn read_x(&mut self) -> Result<u16, I2C::Error> {
         let msb = self.read_register_8(Register::XMsbResult)?;
         let lsb = self.read_register_8(Register::XLsbResult)?;
 
         Ok(u16::from_be_bytes([msb, lsb]))
     }
 
-    pub fn read_y(&mut self) -> Result <u16, I2C::Error> {
+    pub fn read_y(&mut self) -> Result<u16, I2C::Error> {
         let msb = self.read_register_8(Register::YMsbResult)?;
         let lsb = self.read_register_8(Register::YLsbResult)?;
 
         Ok(u16::from_be_bytes([msb, lsb]))
     }
 
-    pub fn read_z(&mut self) -> Result <u16, I2C::Error> {
+    pub fn read_z(&mut self) -> Result<u16, I2C::Error> {
         let msb = self.read_register_8(Register::ZMsbResult)?;
         let lsb = self.read_register_8(Register::ZLsbResult)?;
 
         Ok(u16::from_be_bytes([msb, lsb]))
+    }
+
+    pub fn read_angle(&mut self) -> Result<u16, I2C::Error> {
+        let msb = self.read_register_8(Register::AngleResultMsb)?;
+        let lsb = self.read_register_8(Register::AngleResultLsb)?;
+
+        Ok(u16::from_be_bytes([msb, lsb]))
+    }
+
+    pub fn read_magnitude(&mut self) -> Result<u8, I2C::Error> {
+        self.read_register_8(Register::MagnitudeResult)
     }
 }
