@@ -25,7 +25,7 @@ fn main() -> ! {
     let delay = Delay::new();
 
     /* Initialize i2c controller in EPS32 */
-    let i2c = I2c::new(
+    let mut i2c = I2c::new(
         peripherals.I2C0,
         I2cConfig::default()
         )
@@ -33,8 +33,8 @@ fn main() -> ! {
         .with_sda(peripherals.GPIO21)
         .with_scl(peripherals.GPIO22);
 
-   /* Initialize encoder driver object */
-    let mut encoder = drivers::tmag5273::Tmag5273::new(i2c);
+   /* Initialize hall effect sensor object */
+    // let mut hall_effect = drivers::Tmag5273::new(i2c, drivers::tmag5273::DEFAULT_I2C_ADDR);
 
     /* I2C address for hall encoder IC */
     // let encoder_addr = 0x22;
@@ -65,13 +65,23 @@ fn main() -> ! {
     /* Enable the largest gain for each axis */
     // i2c.write(encoder_addr, &[0x03, 0x03]).ok();
 
+    // i2c.write(0x22, &[drivers::Register::DeviceConfig1 as u8, 0x01]).ok();
+    // i2c.write(0x22, &[drivers::Register::TConfig as u8, 0x01]).ok();
+
+    // hall_effect.config_temp(0x00, true).unwrap();
+    
+    let mut temp_msb = [0u8; 1];
+    let mut temp_lsb = [0u8; 1];
+    let mut status = [0u8; 1];
 
     loop {
-        if let Ok(id_value) =  encoder.read_device_id() {
-            info!("ID: 0x{:X}", id_value);
-        }
-        // i2c.write_read(encoder_addr, &[0x0D], &mut id_value).ok();
+        // if let Ok(temp) = hall_effect.read_temp() {
+            // info!("Temperature: 0x{:X}", temp);
+        // }
+        
+        i2c.write_read(drivers::tmag5273::DEFAULT_I2C_ADDR, &[drivers::Register::ManufacturerIdMsb as u8], &mut status).ok();
 
+        info!("0x{:X}", status[0]);
 
         /* Read x position register */
         // i2c.write_read(encoder_addr, &[0x12], &mut x_msb).ok();
@@ -92,6 +102,6 @@ fn main() -> ! {
 
         /* Report readings */
         // info!("ID: 0x{:X}, X: 0x{:X}, Y: 0x{:X}, Z: 0x{:X}", id_value[0], x_value, y_value, z_value);
-        delay.delay_millis(100);
+        delay.delay_millis(1000);
     }
 }
