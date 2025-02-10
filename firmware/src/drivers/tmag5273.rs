@@ -157,28 +157,28 @@ impl<I2C: I2c> Tmag5273<I2C> {
     fn read_register_8(&mut self, reg: Register) -> Result<u8, I2C::Error> {
         let mut temp = [0];
         self.i2c.write_read(self.address, &[reg as u8], &mut temp)?;
+
         Ok(temp[0])
     }
 
     pub fn config_magnetic_channel(&mut self, config: MagneticConfig) -> Result<(), I2C::Error> {
         /* Read contents of register and ensure to not overwrite */
         let mut val = self.read_register_8(Register::SensorConfig1)?;
-        val &= !(0xF << 4);
-        val |= (config as u8) << 4;
+        val = (val & !(0xF0)) | ((config as u8) << 4);
 
         self.write_register_8(Register::SensorConfig1, val)
     }
 
     pub fn config_temp(&mut self, threshold: u8, enable: bool) -> Result<(), I2C::Error> {
         let val = (threshold << 1) | (enable as u8);
+
         self.write_register_8(Register::TConfig, val)
     }
 
     pub fn config_operating_mode(&mut self, op_mode: OpMode) -> Result<(), I2C::Error> {
         /* Read contents of register and ensure to not overwrite */
         let mut val = self.read_register_8(Register::DeviceConfig2)?;
-        val &= !(0x3);
-        val |= op_mode as u8;
+        val = (val & !(0x3)) | (op_mode as u8);
 
         self.write_register_8(Register::DeviceConfig2, val)
     }
@@ -186,8 +186,7 @@ impl<I2C: I2c> Tmag5273<I2C> {
     pub fn config_angle(&mut self, config: AngleConfig) -> Result<(), I2C::Error> {
         /* Read contents of register and ensure to not overwrite */
         let mut val = self.read_register_8(Register::SensorConfig2)?;
-        val &= !(0x3 << 2);
-        val |= (config as u8) << 2;
+        val = (val & !(0xC)) | ((config as u8) << 2);
 
         self.write_register_8(Register::SensorConfig2, val)
     }
@@ -195,8 +194,7 @@ impl<I2C: I2c> Tmag5273<I2C> {
     pub fn config_conversion(&mut self, conversion: ConversionRate) -> Result<(), I2C::Error> {
         /* Read contents of register and ensure to not overwrite */
         let mut val = self.read_register_8(Register::DeviceConfig1)?;
-        val &= !(0x7 << 2);
-        val |= (conversion as u8) << 2;
+        val = (val & !(0x1C)) | ((conversion as u8) << 2);
 
         self.write_register_8(Register::DeviceConfig1, val)
     }
@@ -240,11 +238,14 @@ impl<I2C: I2c> Tmag5273<I2C> {
         Ok(u16::from_be_bytes([msb, lsb]))
     }
 
-    pub fn read_angle(&mut self) -> Result<u16, I2C::Error> {
+    pub fn read_angle(&mut self) -> Result<f32, I2C::Error> {
+        /* Read and combine angle registers into single 16b variable */
         let msb = self.read_register_8(Register::AngleResultMsb)?;
         let lsb = self.read_register_8(Register::AngleResultLsb)?;
+        let raw = u16::from_be_bytes([msb, lsb]);
 
-        Ok(u16::from_be_bytes([msb, lsb]))
+        /* Convert raw bytes into a float w/ bottom 4 bits being fracitonal */
+        Ok((raw as f32) / 16.0_f32)
     }
 
     pub fn read_magnitude(&mut self) -> Result<u8, I2C::Error> {

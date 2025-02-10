@@ -20,7 +20,7 @@ fn main() -> ! {
     esp_println::logger::init_logger_from_env();
 
     /* Create delay object to use for code delays */
-    let _delay = Delay::new();
+    let delay = Delay::new();
 
     /* Initialize i2c0 controller in EPS32 */
     let i2c = I2c::new(peripherals.I2C0, I2cConfig::default())
@@ -65,6 +65,6 @@ fn main() -> ! {
             info!("X: {}, Y: {}, Angle: {}", x, y, angle);
         }
 
-        // delay.delay_millis(1);
+        delay.delay_millis(50);
     }
 }
