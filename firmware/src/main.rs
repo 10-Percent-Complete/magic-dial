@@ -1,14 +1,25 @@
 #![no_std]
 #![no_main]
 
+use drivers::tmag5273::{
+    AngleEnable, ConversionRate, CrcEn, HystersisThreshold, I2cGlitchFilter, I2cReadMode, LowMode,
+    MagneticConfig, MagnitudeGainChannel, OpMode, SleepConfig, TempCoeff,
+    ThresholdTriggerDirection, ThresholdXCount, Tmag5273, TriggerMode, XYRange, ZRange,
+    DEFAULT_I2C_ADDR,
+};
+
 use esp_backtrace as _;
 use esp_hal::{
     analog::adc::{Adc, AdcConfig},
     delay::Delay,
-    gpio::{Level, Output},
+    gpio::Input,
     i2c::master::{Config as I2cConfig, I2c},
     main,
-    // mcpwm::{operator::PwmPinConfig, McPwm, PeripheralClockConfig},
+    mcpwm::{
+        operator::{PwmPinConfig, PwmUpdateMethod},
+        McPwm, PeripheralClockConfig,
+    },
+    time::RateExtU32,
     Config,
 };
 use log::info;
@@ -24,7 +35,7 @@ fn main() -> ! {
     esp_println::logger::init_logger_from_env();
 
     /* Create delay object to use for code delays */
-    let delay = Delay::new();
+    let _delay = Delay::new();
 
     /* Apply labels for all used pins */
     /* I2C magnetic encoder pins */
@@ -39,13 +50,17 @@ fn main() -> ! {
 
     /* Motor driver pwm high pins */
     let pin_uh = peripherals.GPIO16;
-    let _pin_vh = peripherals.GPIO18;
-    let _pin_wh = peripherals.GPIO19;
+    let pin_vh = peripherals.GPIO18;
+    let pin_wh = peripherals.GPIO19;
 
     /* Motor driver pwm low pins */
-    let _pin_ul = peripherals.GPIO17;
+    let pin_ul = peripherals.GPIO17;
     let pin_vl = peripherals.GPIO23;
     let pin_wl = peripherals.GPIO33;
+
+    /* Buttons */
+    let gpio_13 = peripherals.GPIO13;
+    let gpio_14 = peripherals.GPIO14;
 
     /* Initialize i2c0 controller in EPS32 */
     let i2c = I2c::new(peripherals.I2C0, I2cConfig::default())
@@ -57,123 +72,301 @@ fn main() -> ! {
     let mut adc_current_config = AdcConfig::new();
 
     /* Enable all current ADC pins */
-    let mut adc_u_current_pin =
+    let mut _adc_u_current_pin =
         adc_current_config.enable_pin(pin_u_current, esp_hal::analog::adc::Attenuation::_11dB);
-    let mut adc_v_current_pin =
+    let mut _adc_v_current_pin =
         adc_current_config.enable_pin(pin_v_current, esp_hal::analog::adc::Attenuation::_11dB);
-    let mut adc_w_current_pin =
+    let mut _adc_w_current_pin =
         adc_current_config.enable_pin(pin_w_current, esp_hal::analog::adc::Attenuation::_11dB);
-    let mut adc_supply_current_pin =
+    let mut _adc_supply_current_pin =
         adc_current_config.enable_pin(pin_supply_current, esp_hal::analog::adc::Attenuation::_11dB);
 
     /* Initialize ADC1 module */
-    let mut adc_current = Adc::new(peripherals.ADC1, adc_current_config);
+    let mut _adc_current = Adc::new(peripherals.ADC1, adc_current_config);
 
-    /* Initial the following commutation state [u_h, v_l, w_l] to check initial current readings */
-    let mut _uh = Output::new(pin_uh, Level::High);
-    let mut _vl = Output::new(pin_vl, Level::High);
-    let mut _wl = Output::new(pin_wl, Level::High);
+    /* Initialize buttons */
+    let btn_13 = Input::new(gpio_13, esp_hal::gpio::Pull::Up);
+    let btn_14 = Input::new(gpio_14, esp_hal::gpio::Pull::Up);
 
-    // let pwm_clock_cfg = PeripheralClockConfig::with_frequency(32_u32.MHz()).unwrap();
-    // let mut mcpwm = McPwm::new(peripherals.MCPWM0, pwm_clock_cfg);
+    /* Initialize Motor Control PWM0 module */
+    let pwm_clock_cfg = PeripheralClockConfig::with_frequency(32_u32.MHz()).unwrap();
+    let mut mcpwm = McPwm::new(peripherals.MCPWM0, pwm_clock_cfg);
 
-    // let timer_clock_cfg = pwm_clock_cfg
-    //     .timer_clock_with_frequency(
-    //         99,
-    //         esp_hal::mcpwm::timer::PwmWorkingMode::Increase,
-    //         20_u32.kHz(),
-    //     )
-    //     .unwrap();
+    /* Configure main pwm frequency */
+    let timer_clock_cfg = pwm_clock_cfg
+        .timer_clock_with_frequency(
+            99,
+            esp_hal::mcpwm::timer::PwmWorkingMode::Increase,
+            25_u32.kHz(), // Set PWM frequency to 15kHz
+        )
+        .unwrap();
 
-    // mcpwm.operator0.set_timer(&mcpwm.timer0);
-    // mcpwm.operator1.set_timer(&mcpwm.timer1);
-    // mcpwm.operator2.set_timer(&mcpwm.timer2);
+    /* Link main pwm timer with each phase's operator object */
+    mcpwm.operator0.set_timer(&mcpwm.timer0);
+    mcpwm.operator1.set_timer(&mcpwm.timer0);
+    mcpwm.operator2.set_timer(&mcpwm.timer0);
 
-    // let mut pwm_uh = mcpwm
-    //     .operator0
-    //     .with_pin_a(pin_uh, PwmPinConfig::UP_ACTIVE_HIGH);
+    /* Extract out high and low pins of each phase's operator object */
+    let (mut pwm_uh, mut pwm_ul) = mcpwm.operator0.with_pins(
+        pin_uh,
+        PwmPinConfig::UP_ACTIVE_HIGH,
+        pin_ul,
+        PwmPinConfig::UP_ACTIVE_HIGH,
+    );
+    let (mut pwm_vh, mut pwm_vl) = mcpwm.operator1.with_pins(
+        pin_vh,
+        PwmPinConfig::UP_ACTIVE_HIGH,
+        pin_vl,
+        PwmPinConfig::UP_ACTIVE_HIGH,
+    );
+    let (mut pwm_wh, mut pwm_wl) = mcpwm.operator2.with_pins(
+        pin_wh,
+        PwmPinConfig::UP_ACTIVE_HIGH,
+        pin_wl,
+        PwmPinConfig::UP_ACTIVE_HIGH,
+    );
 
-    // let mut pwm_vh = mcpwm
-    //     .operator1
-    //     .with_pin_a(pin_vh, PwmPinConfig::UP_ACTIVE_HIGH);
+    /* Begin main pwm timer */
+    mcpwm.timer0.start(timer_clock_cfg);
 
-    // let mut pwm_wh = mcpwm
-    //     .operator2
-    //     .with_pin_a(pin_wh, PwmPinConfig::UP_ACTIVE_HIGH);
-
-    // let mut pwm_ul = mcpwm
-    //     .operator0
-    //     .with_pin_b(pin_ul, PwmPinConfig::UP_ACTIVE_HIGH);
-
-    // let mut pwm_vl = mcpwm
-    //     .operator1
-    //     .with_pin_b(pin_vl, PwmPinConfig::UP_ACTIVE_HIGH);
-
-    // let mut pwm_wl = mcpwm
-    //     .operator2
-    //     .with_pin_b(pin_wl, PwmPinConfig::UP_ACTIVE_HIGH);
-
-    // mcpwm.timer0.start(timer_clock_cfg);
-    // mcpwm.timer1.start(timer_clock_cfg);
-    // mcpwm.timer2.start(timer_clock_cfg);
+    /* Ensure all PWM timestamp changes are loaded immediately */
+    pwm_uh.set_update_method(PwmUpdateMethod::empty());
+    pwm_vh.set_update_method(PwmUpdateMethod::empty());
+    pwm_wh.set_update_method(PwmUpdateMethod::empty());
+    pwm_uh.set_update_method(PwmUpdateMethod::empty());
+    pwm_vh.set_update_method(PwmUpdateMethod::empty());
+    pwm_wh.set_update_method(PwmUpdateMethod::empty());
 
     /* Initialize hall effect sensor object */
-    let mut magnetic_sensor = drivers::Tmag5273::new(i2c, drivers::tmag5273::DEFAULT_I2C_ADDR);
+    let mut magnetic_sensor = Tmag5273::new(i2c, DEFAULT_I2C_ADDR);
 
     /* Attempt to initialize the following magnetic sensor settings:
      * Average conversion rate: 32x
+     * Low noise mode
      * Continuous sample mode
      * Enable XY channels
      * Enable angle conversion channels XY
      **/
-    match magnetic_sensor.config_conversion(drivers::tmag5273::ConversionRate::Average32x) {
-        Ok(_) => (),
-        Err(e) => info!("Conversion Configuration Error: {:?}", e),
-    }
-    match magnetic_sensor.config_operating_mode(drivers::tmag5273::OpMode::Continuous) {
-        Ok(_) => (),
-        Err(e) => info!("Operation Mode Configuration Error: {:?}", e),
-    }
-    match magnetic_sensor.config_magnetic_channel(drivers::tmag5273::MagneticConfig::EnableXYX) {
-        Ok(_) => (),
-        Err(e) => info!("Magnetic Channel Configuration Error: {:?}", e),
-    }
-    match magnetic_sensor.config_angle(drivers::tmag5273::AngleConfig::EnableXY) {
-        Ok(_) => (),
-        Err(e) => info!("Angle Channel Configuration Error: {:?}", e),
-    }
+    magnetic_sensor
+        .config_device_1(
+            CrcEn::Off,
+            TempCoeff::_0,
+            ConversionRate::_32x,
+            I2cReadMode::I2cRead3,
+        )
+        .unwrap();
+
+    magnetic_sensor
+        .config_device_2(
+            HystersisThreshold::TwoComplement,
+            LowMode::LowNoise,
+            I2cGlitchFilter::On,
+            TriggerMode::Default,
+            OpMode::Continuous,
+        )
+        .unwrap();
+
+    magnetic_sensor
+        .config_sensor_1(MagneticConfig::EnableXYX, SleepConfig::Sleep1ms)
+        .unwrap();
+
+    magnetic_sensor
+        .config_sensor_2(
+            ThresholdXCount::One,
+            ThresholdTriggerDirection::Below,
+            MagnitudeGainChannel::One,
+            AngleEnable::EnableXY,
+            XYRange::Default,
+            ZRange::Default,
+        )
+        .unwrap();
+
+    /* Size of unique commutation states in degrees */
+    const _STEP_SIZE: f32 = 360.0_f32 / 42.0_f32;
+
+    /* Initial motor control settings */
+    let mut speed: i16 = 500;
+    let mut commutation_state: i8 = 0;
 
     loop {
-        /* Sample all ADC current readings */
-        let u_current_value: u16 =
-            nb::block!(adc_current.read_oneshot(&mut adc_u_current_pin)).unwrap();
-        let v_current_value: u16 =
-            nb::block!(adc_current.read_oneshot(&mut adc_v_current_pin)).unwrap();
-        let w_current_value: u16 =
-            nb::block!(adc_current.read_oneshot(&mut adc_w_current_pin)).unwrap();
-        let supply_current_value: u16 =
-            nb::block!(adc_current.read_oneshot(&mut adc_supply_current_pin)).unwrap();
-
-        /* Determine if magnetic sensor I2C communication is working based on successful
-         * manufacturer ID. Sample and print out readings as a result */
-        if magnetic_sensor.read_manufacturer_id() == Ok(0x5449_u16) {
-            let x = magnetic_sensor.read_x().unwrap();
-            let y = magnetic_sensor.read_y().unwrap();
-            let angle = magnetic_sensor.read_angle().unwrap();
-
-            /* Print data serially */
-            info!(
-                "X: {}, Y: {}, Angle: {}, Current | U: {}, V: {}, W: {}, Supply: {}",
-                x,
-                y,
-                angle,
-                u_current_value,
-                v_current_value,
-                w_current_value,
-                supply_current_value
-            );
+        if btn_13.is_low() && speed < 1000 {
+            speed += 1;
+        } else if btn_14.is_low() && speed > -1000 {
+            speed -= 1;
         }
 
-        delay.delay_millis(1000);
+        /* Clockwise commutation */
+        if speed >= 0 {
+            match commutation_state as u8 {
+                0 => {
+                    /* W High -> U Low */
+                    pwm_uh.set_timestamp(0);
+                    pwm_vh.set_timestamp(0);
+                    pwm_ul.set_timestamp(0);
+                    pwm_vl.set_timestamp(0);
+                    pwm_wl.set_timestamp(0);
+
+                    pwm_ul.set_timestamp(speed as u16);
+                    pwm_wh.set_timestamp(speed as u16);
+                    commutation_state = 1;
+                }
+                1 => {
+                    /* V High -> U Low */
+                    pwm_uh.set_timestamp(0);
+                    pwm_wh.set_timestamp(0);
+                    pwm_vl.set_timestamp(0);
+                    pwm_wl.set_timestamp(0);
+
+                    pwm_ul.set_timestamp(speed as u16);
+                    pwm_vh.set_timestamp(speed as u16);
+                    commutation_state = 2;
+                }
+                2 => {
+                    /* V High -> W Low */
+                    pwm_uh.set_timestamp(0);
+                    pwm_wh.set_timestamp(0);
+                    pwm_ul.set_timestamp(0);
+                    pwm_vl.set_timestamp(0);
+
+                    pwm_wl.set_timestamp(speed as u16);
+                    pwm_vh.set_timestamp(speed as u16);
+                    commutation_state = 3;
+                }
+                3 => {
+                    /* U High -> W Low */
+                    pwm_vh.set_timestamp(0);
+                    pwm_wh.set_timestamp(0);
+                    pwm_ul.set_timestamp(0);
+                    pwm_vl.set_timestamp(0);
+
+                    pwm_wl.set_timestamp(speed as u16);
+                    pwm_uh.set_timestamp(speed as u16);
+                    commutation_state = 4;
+                }
+                4 => {
+                    /* U High -> V Low */
+                    pwm_vh.set_timestamp(0);
+                    pwm_wh.set_timestamp(0);
+                    pwm_ul.set_timestamp(0);
+                    pwm_wl.set_timestamp(0);
+
+                    pwm_vl.set_timestamp(speed as u16);
+                    pwm_uh.set_timestamp(speed as u16);
+                    commutation_state = 5;
+                }
+                5 => {
+                    /* W High -> V Low */
+                    pwm_uh.set_timestamp(0);
+                    pwm_vh.set_timestamp(0);
+                    pwm_ul.set_timestamp(0);
+                    pwm_wl.set_timestamp(0);
+
+                    pwm_vl.set_timestamp(speed as u16);
+                    pwm_wh.set_timestamp(speed as u16);
+                    commutation_state = 0;
+                }
+                _ => {
+                    /* Default */
+                    pwm_uh.set_timestamp(0);
+                    pwm_vh.set_timestamp(0);
+                    pwm_wh.set_timestamp(0);
+                    pwm_ul.set_timestamp(0);
+                    pwm_vl.set_timestamp(0);
+                    pwm_wl.set_timestamp(0);
+                }
+            }
+        }
+        /* Counter Clockwise commutation */
+        else {
+            match commutation_state.abs() {
+                0 => {
+                    /* U High -> W Low */
+                    pwm_vh.set_timestamp(0);
+                    pwm_wh.set_timestamp(0);
+                    pwm_ul.set_timestamp(0);
+                    pwm_vl.set_timestamp(0);
+                    
+                    pwm_wl.set_timestamp(speed as u16);
+                    pwm_uh.set_timestamp(speed as u16);
+                    commutation_state = 5;
+                }
+                1 => {
+                    /* U High -> V Low */
+                    pwm_vh.set_timestamp(0);
+                    pwm_wh.set_timestamp(0);
+                    pwm_ul.set_timestamp(0);
+                    pwm_wl.set_timestamp(0);
+                    
+                    pwm_vl.set_timestamp(speed as u16);
+                    pwm_uh.set_timestamp(speed as u16);
+                    commutation_state = 0;
+                }
+                2 => {
+                    /* W High -> V Low */
+                    pwm_uh.set_timestamp(0);
+                    pwm_vh.set_timestamp(0);
+                    pwm_ul.set_timestamp(0);
+                    pwm_wl.set_timestamp(0);
+                    
+                    pwm_vl.set_timestamp(speed as u16);
+                    pwm_wh.set_timestamp(speed as u16);
+                    commutation_state = 1;
+                }
+                3 => {
+                    /* W High -> U Low */
+                    pwm_uh.set_timestamp(0);
+                    pwm_vh.set_timestamp(0);
+                    pwm_ul.set_timestamp(0);
+                    pwm_vl.set_timestamp(0);
+                    pwm_wl.set_timestamp(0);
+
+                    pwm_ul.set_timestamp(speed as u16);
+                    pwm_wh.set_timestamp(speed as u16);
+                    commutation_state = 2;
+                }
+                4 => {
+                    /* V High -> U Low */
+                    pwm_uh.set_timestamp(0);
+                    pwm_wh.set_timestamp(0);
+                    pwm_vl.set_timestamp(0);
+                    pwm_wl.set_timestamp(0);
+
+                    pwm_ul.set_timestamp(speed as u16);
+                    pwm_vh.set_timestamp(speed as u16);
+                    commutation_state = 3;
+                }
+                5 => {
+                    /* V High -> W Low */
+                    pwm_uh.set_timestamp(0);
+                    pwm_wh.set_timestamp(0);
+                    pwm_ul.set_timestamp(0);
+                    pwm_vl.set_timestamp(0);
+
+                    pwm_wl.set_timestamp(speed as u16);
+                    pwm_vh.set_timestamp(speed as u16);
+                    commutation_state = 4;
+                }
+                _ => {
+                    /* Default */
+                    pwm_uh.set_timestamp(0);
+                    pwm_vh.set_timestamp(0);
+                    pwm_wh.set_timestamp(0);
+                    pwm_ul.set_timestamp(0);
+                    pwm_vl.set_timestamp(0);
+                    pwm_wl.set_timestamp(0);
+                }
+            }
+        }
+
+        /* Sample magnetic encoder positions and load specific commutation state */
+        let angle = magnetic_sensor.read_angle().unwrap();
+        // let commutation_state = ((angle / STEP_SIZE) as i32) % 6;
+
+        /* Print data serially */
+        info!(
+            "State: {}, Angle: {}, Speed: {}",
+            commutation_state as u8, angle, speed
+        );
+        // delay.delay_millis(5);
     }
 }

@@ -77,23 +77,30 @@ pub enum SleepConfig {
 #[allow(dead_code)]
 #[repr(u8)]
 #[derive(Clone, Copy)]
-pub enum AngleConfig {
-    Disable = 0x0,
-    EnableXY = 0x1,
-    EnableYZ = 0x2,
-    EnableXZ = 0x3,
+pub enum CrcEn {
+    Off = 0x0,
+    On = 0x1,
+}
+
+#[allow(dead_code)]
+#[repr(u8)]
+#[derive(Clone, Copy)]
+pub enum TempCoeff {
+    _0 = 0x0,
+    _0_12 = 0x1,
+    _0_2 = 0x3,
 }
 
 #[allow(dead_code)]
 #[repr(u8)]
 #[derive(Clone, Copy)]
 pub enum ConversionRate {
-    Average1x = 0x0,
-    Average2x = 0x1,
-    Average4x = 0x2,
-    Average8x = 0x3,
-    Average16x = 0x4,
-    Average32x = 0x5,
+    _1x = 0x0,
+    _2x = 0x1,
+    _4x = 0x2,
+    _8x = 0x3,
+    _16x = 0x4,
+    _32x = 0x5,
 }
 
 #[allow(dead_code)]
@@ -103,6 +110,14 @@ pub enum I2cReadMode {
     I2cRead3 = 0x0,
     I2cRead2 = 0x1,
     I2cRead1 = 0x2,
+}
+
+#[allow(dead_code)]
+#[repr(u8)]
+#[derive(Clone, Copy)]
+pub enum HystersisThreshold {
+    TwoComplement = 0x0,
+    SevenLsb = 0x1,
 }
 
 #[allow(dead_code)]
@@ -139,6 +154,99 @@ pub enum OpMode {
     WakeAndSleep = 0x3,
 }
 
+#[allow(dead_code)]
+#[repr(u8)]
+#[derive(Clone, Copy)]
+pub enum ThresholdXCount {
+    One = 0x0,
+    Four = 0x1,
+}
+
+#[allow(dead_code)]
+#[repr(u8)]
+#[derive(Clone, Copy)]
+pub enum ThresholdTriggerDirection {
+    Above = 0x0,
+    Below = 0x1,
+}
+
+#[allow(dead_code)]
+#[repr(u8)]
+#[derive(Clone, Copy)]
+pub enum MagnitudeGainChannel {
+    One = 0x0,
+    Two = 0x1,
+}
+
+#[allow(dead_code)]
+#[repr(u8)]
+#[derive(Clone, Copy)]
+pub enum AngleEnable {
+    Disable = 0x0,
+    EnableXY = 0x1,
+    EnableYZ = 0x2,
+    EnableXZ = 0x3,
+}
+
+#[allow(dead_code)]
+#[repr(u8)]
+#[derive(Clone, Copy)]
+pub enum XYRange {
+    Default = 0x0,
+    Double = 0x1,
+}
+
+#[allow(dead_code)]
+#[repr(u8)]
+#[derive(Clone, Copy)]
+pub enum ZRange {
+    Default = 0x0,
+    Double = 0x1,
+}
+
+#[allow(dead_code)]
+#[repr(u8)]
+#[derive(Clone, Copy)]
+pub enum InterruptMode {
+    Off = 0x0,
+    IntPin = 0x1,
+    IntPinI2cBusy = 0x2,
+    SclPin = 0x3,
+    SclPinI2cBusy = 0x4,
+}
+
+#[allow(dead_code)]
+#[repr(u8)]
+#[derive(Clone, Copy)]
+pub enum InterruptState {
+    Latch = 0x0,
+    Pulse = 0x1,
+}
+
+#[allow(dead_code)]
+#[repr(u8)]
+#[derive(Clone, Copy)]
+pub enum InterruptThreshold {
+    Off = 0x0,
+    On = 0x1,
+}
+
+#[allow(dead_code)]
+#[repr(u8)]
+#[derive(Clone, Copy)]
+pub enum InterruptResult {
+    NotOnConversion = 0x0,
+    OnConversion = 0x1,
+}
+
+#[allow(dead_code)]
+#[repr(u8)]
+#[derive(Clone, Copy)]
+pub enum InterruptMask {
+    IntPinEnable = 0x0,
+    IntPinDisable = 0x1,
+}
+
 #[derive(Copy, Clone, Debug)]
 pub struct Tmag5273<I2C> {
     i2c: I2C,
@@ -146,10 +254,12 @@ pub struct Tmag5273<I2C> {
 }
 #[allow(dead_code)]
 impl<I2C: I2c> Tmag5273<I2C> {
+    /* Construtor  */
     pub fn new(i2c: I2C, address: u8) -> Self {
         Self { i2c, address }
     }
 
+    /* Helper functions */
     fn write_register_8(&mut self, reg: Register, value: u8) -> Result<(), I2C::Error> {
         self.i2c.write(self.address, &[reg as u8, value])
     }
@@ -161,12 +271,75 @@ impl<I2C: I2c> Tmag5273<I2C> {
         Ok(temp[0])
     }
 
-    pub fn config_magnetic_channel(&mut self, config: MagneticConfig) -> Result<(), I2C::Error> {
-        /* Read contents of register and ensure to not overwrite */
-        let mut val = self.read_register_8(Register::SensorConfig1)?;
-        val = (val & !(0xF0)) | ((config as u8) << 4);
+    /* Configuration functions */
+    pub fn config_device_1(
+        &mut self,
+        crc: CrcEn,
+        temp_coeff: TempCoeff,
+        rate: ConversionRate,
+        i2c_mode: I2cReadMode,
+    ) -> Result<(), I2C::Error> {
+        let val = (crc as u8) << 7 | (temp_coeff as u8) << 5 | (rate as u8) << 2 | (i2c_mode as u8);
+
+        self.write_register_8(Register::DeviceConfig1, val)
+    }
+
+    pub fn config_device_2(
+        &mut self,
+        threshold: HystersisThreshold,
+        low_mode: LowMode,
+        glitch: I2cGlitchFilter,
+        trigger: TriggerMode,
+        op_mode: OpMode,
+    ) -> Result<(), I2C::Error> {
+        let val = (threshold as u8) << 5
+            | (low_mode as u8) << 4
+            | (glitch as u8) << 3
+            | (trigger as u8) << 2
+            | op_mode as u8;
+
+        self.write_register_8(Register::DeviceConfig2, val)
+    }
+
+    pub fn config_sensor_1(
+        &mut self,
+        config: MagneticConfig,
+        sleep: SleepConfig,
+    ) -> Result<(), I2C::Error> {
+        let val = (config as u8) << 4 | (sleep as u8);
 
         self.write_register_8(Register::SensorConfig1, val)
+    }
+
+    pub fn config_sensor_2(
+        &mut self,
+        count: ThresholdXCount,
+        direction: ThresholdTriggerDirection,
+        gain_channel: MagnitudeGainChannel,
+        angle_en: AngleEnable,
+        x_y_range: XYRange,
+        z_range: ZRange,
+    ) -> Result<(), I2C::Error> {
+        let val = (count as u8) << 6
+            | (direction as u8) << 5
+            | (gain_channel as u8) << 4
+            | (angle_en as u8) << 2
+            | (x_y_range as u8) << 1
+            | z_range as u8;
+
+        self.write_register_8(Register::SensorConfig2, val)
+    }
+
+    pub fn config_x_threshold(&mut self, threshold: u8) -> Result<(), I2C::Error> {
+        self.write_register_8(Register::XThrConfig, threshold)
+    }
+
+    pub fn config_y_threshold(&mut self, threshold: u8) -> Result<(), I2C::Error> {
+        self.write_register_8(Register::YThrConfig, threshold)
+    }
+
+    pub fn config_z_threshold(&mut self, threshold: u8) -> Result<(), I2C::Error> {
+        self.write_register_8(Register::ZThrConfig, threshold)
     }
 
     pub fn config_temp(&mut self, threshold: u8, enable: bool) -> Result<(), I2C::Error> {
@@ -175,28 +348,39 @@ impl<I2C: I2c> Tmag5273<I2C> {
         self.write_register_8(Register::TConfig, val)
     }
 
-    pub fn config_operating_mode(&mut self, op_mode: OpMode) -> Result<(), I2C::Error> {
-        /* Read contents of register and ensure to not overwrite */
-        let mut val = self.read_register_8(Register::DeviceConfig2)?;
-        val = (val & !(0x3)) | (op_mode as u8);
-
-        self.write_register_8(Register::DeviceConfig2, val)
+    pub fn config_interrupt(
+        &mut self,
+        conversion: InterruptResult,
+        threshold: InterruptThreshold,
+        state: InterruptState,
+        mode: InterruptMode,
+        mask: InterruptMask,
+    ) -> Result<(), I2C::Error> {
+        let val = (conversion as u8) << 7
+            | (threshold as u8) << 6
+            | (state as u8) << 5
+            | (mode as u8) << 4
+            | (mask as u8);
+        self.write_register_8(Register::IntConfig1, val)
     }
 
-    pub fn config_angle(&mut self, config: AngleConfig) -> Result<(), I2C::Error> {
-        /* Read contents of register and ensure to not overwrite */
-        let mut val = self.read_register_8(Register::SensorConfig2)?;
-        val = (val & !(0xC)) | ((config as u8) << 2);
-
-        self.write_register_8(Register::SensorConfig2, val)
+    pub fn config_mag_offset_1(&mut self, offset: u8) -> Result<(), I2C::Error> {
+        self.write_register_8(Register::MagOffsetConfig1, offset)
     }
 
-    pub fn config_conversion(&mut self, conversion: ConversionRate) -> Result<(), I2C::Error> {
-        /* Read contents of register and ensure to not overwrite */
-        let mut val = self.read_register_8(Register::DeviceConfig1)?;
-        val = (val & !(0x1C)) | ((conversion as u8) << 2);
+    pub fn config_mag_offset_2(&mut self, offset: u8) -> Result<(), I2C::Error> {
+        self.write_register_8(Register::MagOffsetConfig1, offset)
+    }
 
-        self.write_register_8(Register::DeviceConfig1, val)
+    pub fn config_i2c_address(&mut self, address: u8, update_en: bool) -> Result<(), I2C::Error> {
+        let val = (address << 1) | (update_en as u8);
+
+        self.write_register_8(Register::I2cAddress, val)
+    }
+
+    /* Status functions */
+    pub fn read_device_id(&mut self) -> Result<u8, I2C::Error> {
+        self.read_register_8(Register::DeviceId)
     }
 
     pub fn read_manufacturer_id(&mut self) -> Result<u16, I2C::Error> {
@@ -204,10 +388,6 @@ impl<I2C: I2c> Tmag5273<I2C> {
         let lsb = self.read_register_8(Register::ManufacturerIdLsb)?;
 
         Ok(u16::from_be_bytes([msb, lsb]))
-    }
-
-    pub fn read_device_status(&mut self) -> Result<u8, I2C::Error> {
-        self.read_register_8(Register::DeviceStatus)
     }
 
     pub fn read_temp(&mut self) -> Result<u16, I2C::Error> {
@@ -238,6 +418,10 @@ impl<I2C: I2c> Tmag5273<I2C> {
         Ok(u16::from_be_bytes([msb, lsb]))
     }
 
+    pub fn read_conversion_status(&mut self) -> Result<u8, I2C::Error> {
+        self.read_register_8(Register::ConvStatus)
+    }
+
     pub fn read_angle(&mut self) -> Result<f32, I2C::Error> {
         /* Read and combine angle registers into single 16b variable */
         let msb = self.read_register_8(Register::AngleResultMsb)?;
@@ -250,5 +434,9 @@ impl<I2C: I2c> Tmag5273<I2C> {
 
     pub fn read_magnitude(&mut self) -> Result<u8, I2C::Error> {
         self.read_register_8(Register::MagnitudeResult)
+    }
+
+    pub fn read_device_status(&mut self) -> Result<u8, I2C::Error> {
+        self.read_register_8(Register::DeviceStatus)
     }
 }
