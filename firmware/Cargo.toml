@@ -19,6 +19,7 @@ log = { version = "0.4.21" }
 critical-section = "1.2.0"
 defmt = "0.3.10"
 nb = "=1.1.0"
+libm = "0.2.11"
 
 embedded-hal = "1.0.0"
 
