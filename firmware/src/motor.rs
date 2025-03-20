@@ -1,10 +1,11 @@
 pub struct Motor {
-    pole_pairs: u8,
+    pub pole_pairs: u8,
     phase_resistance: f32,
     kv_rating: f32,
     phase_inductance: f32,
 
-    voltage_limit: f32,
+    pub power_supply_voltage: f32,
+    pub voltage_limit: f32,
     current_limit: f32,
     velocity_limit: f32,
     
@@ -13,8 +14,8 @@ pub struct Motor {
     enabled: bool,
     target: f32,
 
-    shaft_angle: f32,
-    shaft_velocity: f32,
+    pub shaft_angle: f32,
+    pub shaft_velocity: f32,
 
     shaft_angle_target: f32,
     shaft_velocity_target: f32,
@@ -23,6 +24,8 @@ pub struct Motor {
     q_voltage: f32,
     d_current: f32,
     q_current: f32,
+
+    pub open_loop_timestamp: u64,
 }
 
 pub enum Status {
@@ -38,6 +41,7 @@ impl Motor {
         phase_resistance: f32,
         kv_rating: f32,
         phase_inductance: f32,
+        power_supply_voltage: f32,
         voltage_limit: f32,
         current_limit: f32,
         velocity_limit: f32
@@ -49,6 +53,7 @@ impl Motor {
             phase_resistance,
             kv_rating,
             phase_inductance,
+            power_supply_voltage,
             voltage_limit,
             current_limit,
             velocity_limit,
@@ -63,6 +68,7 @@ impl Motor {
             q_voltage: 0.0,
             d_current: 0.0,
             q_current: 0.0,
+            open_loop_timestamp: 0,
         }
     }
 }

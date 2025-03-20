@@ -11,16 +11,20 @@ use drivers::tmag5273::{
 use esp_backtrace as _;
 use esp_hal::{
     delay::Delay,
-    gpio::Input,
+    gpio::{Input, Output},
     main,
+    mcpwm::timer::Timer,
     rtc_cntl::Rtc,
+    time::ExtU64,
+    timer::{timg::TimerGroup, PeriodicTimer},
     uart::{self, Config as UartConfig, Uart},
     Config,
 };
 
 use control::Control;
 use motor::Motor;
-use pwm::PwmPhases;
+use nb::block;
+use pwm::{PwmPhases, PERIOD};
 
 mod adc;
 mod control;
@@ -38,22 +42,20 @@ fn main() -> ! {
     esp_println::logger::init_logger_from_env();
 
     /* Create delay object to use for code delays */
-    let rtc = Rtc::new(peripherals.LPWR);
     let delay: Delay = Delay::new();
 
     /* Apply labels for all used pins */
-
     /* Buttons */
     let gpio_13 = peripherals.GPIO13;
     let gpio_14 = peripherals.GPIO14;
 
     /* UART Pins */
-    // let (tx_pin, rx_pin) = (peripherals.GPIO1, peripherals.GPIO3);
+    let (tx_pin, rx_pin) = (peripherals.GPIO1, peripherals.GPIO3);
 
-    // let mut serial = Uart::new(peripherals.UART0, UartConfig::default())
-    //     .unwrap()
-    //     .with_rx(rx_pin)
-    //     .with_tx(tx_pin);
+    let mut serial = Uart::new(peripherals.UART0, UartConfig::default())
+        .unwrap()
+        .with_rx(rx_pin)
+        .with_tx(tx_pin);
 
     /* Initialize i2c controller */
     let i2c = i2c::init(
@@ -83,7 +85,7 @@ fn main() -> ! {
     );
 
     /* Initialize motor object */
-    let mut motor = Motor::new(4, 0.0, 0.0, 0.0, 4.0, 4.0, 2.0);
+    let motor = Motor::new(4, 0.0, 0.0, 0.0, 3.3, 4.0, 4.0, 2.0);
 
     /* Initialize buttons */
     let btn_13 = Input::new(gpio_13, esp_hal::gpio::Pull::Up);
@@ -91,15 +93,6 @@ fn main() -> ! {
 
     /* Initialize hall effect sensor object */
     let mut magnetic_sensor = Tmag5273::new(i2c, DEFAULT_I2C_ADDR);
-
-    /* Initialize motor controller */
-    let mut controller = Control::new(
-        pwm_phases,
-        motor,
-        magnetic_sensor,
-        control::CommutationMode::Trapezoid120,
-        control::ControllerType::velocity_open_loop,
-    );
 
     // /* Attempt to initialize the following magnetic sensor settings:
     //  * Average conversion rate: 32x
@@ -141,18 +134,46 @@ fn main() -> ! {
     //         ZRange::Default,
     //     )
     //     .unwrap();
-    let mut i = 0;
+
+    /* Initialize motor controller */
+    let mut controller = Control::new(
+        pwm_phases,
+        motor,
+        magnetic_sensor,
+        control::CommutationMode::Trapezoid120,
+        control::ControllerType::velocity_open_loop,
+    );
+
+    let mut target_velocity: f32 = PERIOD as f32 / 2.0;
+    // let step_per_rev = 4 * 6;
+    // let step_time = (60000.0 / (step_per_rev as f32)) as u32;
+
+    let timg0 = TimerGroup::new(peripherals.TIMG0);
+    let mut periodic = PeriodicTimer::new(timg0.timer0);
+    periodic.start(1.millis()).unwrap();
+
+    // let mut byte = [0u8; 1];
+
     loop {
-        controller.exec(i);
-        i = (i + 1) % 6;
-        delay.delay_millis(5);
+        match periodic.wait() {
+            Ok(()) => {
+                controller.exec(target_velocity);
+            }
+            Err(nb::Error::WouldBlock) => {
+                if btn_13.is_low() && target_velocity < (PERIOD as f32) {
+                    target_velocity += 1.0;
+                } else if btn_14.is_low() && target_velocity > 0.0 {
+                    target_velocity -= 1.0;
+                }
+            }
+        }
+
         /* Print data serially */
         // info!(
         //     "State: {}, Angle: {}, Speed: {}",
         //     commutation_state as u8, angle, speed
         // );
         // serial.read_buffered_bytes(&mut byte).unwrap();
-        // delay.delay_millis(5);
         // serial.write_bytes(&byte).unwrap();
     }
 }

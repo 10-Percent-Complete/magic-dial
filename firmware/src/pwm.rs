@@ -9,10 +9,12 @@ use esp_hal::mcpwm::{
 use esp_hal::peripherals::MCPWM0;
 use esp_hal::time::RateExtU32;
 
+pub const PERIOD: u16 = 6399;
+
 pub struct PwmPhases<'a> {
-    u: LinkedPins<'a, MCPWM0, 0>,
-    v: LinkedPins<'a, MCPWM0, 1>,
-    w: LinkedPins<'a, MCPWM0, 2>,
+    pub u: LinkedPins<'a, MCPWM0, 0>,
+    pub v: LinkedPins<'a, MCPWM0, 1>,
+    pub w: LinkedPins<'a, MCPWM0, 2>,
 }
 
 impl PwmPhases<'_> {
@@ -40,31 +42,27 @@ impl PwmPhases<'_> {
             uh,
             PwmPinConfig::UP_ACTIVE_HIGH,
             ul,
-            PwmPinConfig::EMPTY,
-            DeadTimeCfg::new_ahc()
+            PwmPinConfig::UP_ACTIVE_HIGH,
+            DeadTimeCfg::new_ahc(),
         );
         let pwm_v = op1.with_linked_pins(
             vh,
             PwmPinConfig::UP_ACTIVE_HIGH,
             vl,
-            PwmPinConfig::EMPTY,
-            DeadTimeCfg::new_ahc()
+            PwmPinConfig::UP_ACTIVE_HIGH,
+            DeadTimeCfg::new_ahc(),
         );
         let pwm_w = op2.with_linked_pins(
             wh,
             PwmPinConfig::UP_ACTIVE_HIGH,
             wl,
-            PwmPinConfig::EMPTY,
-            DeadTimeCfg::new_ahc()
+            PwmPinConfig::UP_ACTIVE_HIGH,
+            DeadTimeCfg::new_ahc(),
         );
 
         mcpwm.timer0.start(
             pwm_clock_cfg
-                .timer_clock_with_frequency(
-                    7999,
-                    PwmWorkingMode::Increase,
-                    20_u32.kHz(),
-                )
+                .timer_clock_with_frequency(PERIOD, PwmWorkingMode::Increase, 25.kHz())
                 .unwrap(),
         );
 
@@ -76,9 +74,8 @@ impl PwmPhases<'_> {
     }
 
     pub fn set_phase(&mut self, u_dc: u16, v_dc: u16, w_dc: u16) {
-
-        self.u.set_timestamp_a(u_dc);
-        self.v.set_timestamp_a(v_dc);
-        self.w.set_timestamp_a(w_dc);
+        // self.u.set_timestamp_a(u_dc);
+        // self.v.set_timestamp_a(v_dc);
+        // self.w.set_timestamp_a(w_dc);
     }
 }
