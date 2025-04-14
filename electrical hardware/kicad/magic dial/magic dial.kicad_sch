@@ -28309,7 +28309,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0003cb1f-979f-475c-b284-55733369fc01")
-		(property "Reference" "#PWR040"
+		(property "Reference" "#PWR046"
 			(at 356.87 58.42 0)
 			(effects
 				(font
@@ -28359,7 +28359,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR040")
+					(reference "#PWR046")
 					(unit 1)
 				)
 			)
@@ -28390,7 +28390,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
 			(at 281.94 158.75 0)
 			(effects
 				(font
@@ -28441,7 +28441,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0214c277-2cab-4f9d-b525-ebdc0d4d9d2d")
-		(property "Reference" "#PWR035"
+		(property "Reference" "#PWR053"
 			(at 400.05 49.53 0)
 			(effects
 				(font
@@ -28491,7 +28491,7 @@
 		(instances
 			(project ""
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR035")
+					(reference "#PWR053")
 					(unit 1)
 				)
 			)
@@ -28507,7 +28507,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "076df8ec-5ccc-4802-9882-660a0591e6c6")
-		(property "Reference" "#PWR025"
+		(property "Reference" "#PWR012"
 			(at 128.27 120.65 0)
 			(effects
 				(font
@@ -28557,7 +28557,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR025")
+					(reference "#PWR012")
 					(unit 1)
 				)
 			)
@@ -28573,7 +28573,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "07796d23-ef22-4031-a05a-072aca58e240")
-		(property "Reference" "NT2"
+		(property "Reference" "NT3"
 			(at 393.7 45.72 0)
 			(effects
 				(font
@@ -28589,7 +28589,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "NetTie:NetTie-2_SMD_Pad0.5mm"
 			(at 393.7 50.8 0)
 			(effects
 				(font
@@ -28625,7 +28625,7 @@
 		(instances
 			(project ""
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "NT2")
+					(reference "NT3")
 					(unit 1)
 				)
 			)
@@ -28641,7 +28641,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0802ec3e-2528-4ad8-b107-1af49853ca90")
-		(property "Reference" "#PWR034"
+		(property "Reference" "#PWR07"
 			(at 90.17 236.22 0)
 			(effects
 				(font
@@ -28691,7 +28691,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR034")
+					(reference "#PWR07")
 					(unit 1)
 				)
 			)
@@ -28707,7 +28707,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0c8ea033-ff81-4d74-a88f-afa6b8925441")
-		(property "Reference" "#FLG05"
+		(property "Reference" "#FLG03"
 			(at 271.78 38.735 0)
 			(effects
 				(font
@@ -28757,7 +28757,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#FLG05")
+					(reference "#FLG03")
 					(unit 1)
 				)
 			)
@@ -28773,7 +28773,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0cb626e9-6bba-489e-adfa-4c0ecb0ab0e4")
-		(property "Reference" "#PWR010"
+		(property "Reference" "#PWR011"
 			(at 115.57 50.8 0)
 			(effects
 				(font
@@ -28823,7 +28823,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR010")
+					(reference "#PWR011")
 					(unit 1)
 				)
 			)
@@ -28839,7 +28839,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "11487b3c-e7e2-496b-b49f-2ae0650eff6a")
-		(property "Reference" "J10"
+		(property "Reference" "J7"
 			(at 348.615 237.49 0)
 			(effects
 				(font
@@ -28855,7 +28855,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
 			(at 347.98 242.57 0)
 			(effects
 				(font
@@ -28891,7 +28891,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "J10")
+					(reference "J7")
 					(unit 1)
 				)
 			)
@@ -28925,7 +28925,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 194.31 144.78 0)
 			(effects
 				(font
@@ -28995,7 +28995,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_SMD:LED_1206_3216Metric"
 			(at 306.07 123.19 0)
 			(effects
 				(font
@@ -29047,7 +29047,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1ab01d84-021d-4927-9962-bc5ec72f88a3")
-		(property "Reference" "#PWR046"
+		(property "Reference" "#PWR048"
 			(at 367.03 133.35 0)
 			(effects
 				(font
@@ -29097,7 +29097,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR046")
+					(reference "#PWR048")
 					(unit 1)
 				)
 			)
@@ -29113,7 +29113,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1acf2f36-dcdc-4f4e-96f4-ae3a019a3b77")
-		(property "Reference" "C4"
+		(property "Reference" "C6"
 			(at 346.71 49.5362 0)
 			(effects
 				(font
@@ -29131,7 +29131,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 344.17 50.8 0)
 			(effects
 				(font
@@ -29167,7 +29167,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "C4")
+					(reference "C6")
 					(unit 1)
 				)
 			)
@@ -29183,7 +29183,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1e6a9885-eb5b-41cd-b083-051c3100e6c3")
-		(property "Reference" "R9"
+		(property "Reference" "R7"
 			(at 177.8 143.5099 0)
 			(effects
 				(font
@@ -29201,7 +29201,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 175.26 144.78 0)
 			(effects
 				(font
@@ -29237,7 +29237,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R9")
+					(reference "R7")
 					(unit 1)
 				)
 			)
@@ -29252,7 +29252,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1f6b1dfa-ef91-4619-a1b1-696ac59fcb95")
-		(property "Reference" "C9"
+		(property "Reference" "C7"
 			(at 359.918 48.006 0)
 			(effects
 				(font
@@ -29270,7 +29270,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 356.87 48.26 0)
 			(effects
 				(font
@@ -29306,7 +29306,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "C9")
+					(reference "C7")
 					(unit 1)
 				)
 			)
@@ -29321,7 +29321,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2016fc3f-894c-41ee-bc8a-f0c27840509e")
-		(property "Reference" "R25"
+		(property "Reference" "R15"
 			(at 252.476 31.242 90)
 			(effects
 				(font
@@ -29337,7 +29337,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 254 46.99 0)
 			(effects
 				(font
@@ -29373,7 +29373,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R25")
+					(reference "R15")
 					(unit 1)
 				)
 			)
@@ -29389,7 +29389,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "263565f8-57fe-4de4-bcf5-1c585984ab6f")
-		(property "Reference" "U3"
+		(property "Reference" "U6"
 			(at 182.88 86.36 0)
 			(effects
 				(font
@@ -29500,7 +29500,7 @@
 		(instances
 			(project ""
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "U3")
+					(reference "U6")
 					(unit 1)
 				)
 			)
@@ -29516,7 +29516,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "280333fd-30ab-48cc-9fe4-4704074340c4")
-		(property "Reference" "#PWR028"
+		(property "Reference" "#PWR020"
 			(at 220.98 270.51 0)
 			(effects
 				(font
@@ -29566,7 +29566,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR028")
+					(reference "#PWR020")
 					(unit 1)
 				)
 			)
@@ -29600,7 +29600,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_SMD:LED_1206_3216Metric"
 			(at 347.98 123.19 0)
 			(effects
 				(font
@@ -29652,7 +29652,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "293786b9-36a5-4aa9-b706-6422e7d82e1f")
-		(property "Reference" "#PWR031"
+		(property "Reference" "#PWR024"
 			(at 231.14 102.87 0)
 			(effects
 				(font
@@ -29702,7 +29702,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR031")
+					(reference "#PWR024")
 					(unit 1)
 				)
 			)
@@ -29717,7 +29717,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2a9c44a2-9327-4b27-8334-e4b4d18d71d7")
-		(property "Reference" "C3"
+		(property "Reference" "C8"
 			(at 402.59 53.3462 0)
 			(effects
 				(font
@@ -29735,7 +29735,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 400.05 54.61 0)
 			(effects
 				(font
@@ -29771,7 +29771,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "C3")
+					(reference "C8")
 					(unit 1)
 				)
 			)
@@ -29787,7 +29787,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2ca7727a-31ad-4aa2-a59c-8cd91f0bc776")
-		(property "Reference" "R6"
+		(property "Reference" "R1"
 			(at 38.1 105.4099 0)
 			(effects
 				(font
@@ -29805,7 +29805,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 35.56 106.68 0)
 			(effects
 				(font
@@ -29841,7 +29841,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R6")
+					(reference "R1")
 					(unit 1)
 				)
 			)
@@ -29857,7 +29857,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2cdb71bb-daf8-4763-8dd9-e4510443f4a9")
-		(property "Reference" "#PWR045"
+		(property "Reference" "#PWR010"
 			(at 113.03 280.67 0)
 			(effects
 				(font
@@ -29907,7 +29907,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR045")
+					(reference "#PWR010")
 					(unit 1)
 				)
 			)
@@ -29923,7 +29923,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2ed254ba-f978-4d9b-ae85-497e637da812")
-		(property "Reference" "R14"
+		(property "Reference" "R6"
 			(at 170.18 162.5599 0)
 			(effects
 				(font
@@ -29941,7 +29941,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 167.64 163.83 0)
 			(effects
 				(font
@@ -29977,7 +29977,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R14")
+					(reference "R6")
 					(unit 1)
 				)
 			)
@@ -29993,7 +29993,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2f1bdeda-578d-4b34-9baa-8752a0ce6317")
-		(property "Reference" "J9"
+		(property "Reference" "J6"
 			(at 346.075 217.17 0)
 			(effects
 				(font
@@ -30009,7 +30009,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
 			(at 345.44 222.25 0)
 			(effects
 				(font
@@ -30045,7 +30045,7 @@
 		(instances
 			(project ""
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "J9")
+					(reference "J6")
 					(unit 1)
 				)
 			)
@@ -30061,7 +30061,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3091fd42-be63-4486-8653-621fd6e811af")
-		(property "Reference" "#PWR036"
+		(property "Reference" "#PWR019"
 			(at 208.28 63.5 0)
 			(effects
 				(font
@@ -30111,7 +30111,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR036")
+					(reference "#PWR019")
 					(unit 1)
 				)
 			)
@@ -30127,7 +30127,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "31441265-d093-4715-a272-e2774efd6074")
-		(property "Reference" "#FLG06"
+		(property "Reference" "#FLG04"
 			(at 281.94 38.735 0)
 			(effects
 				(font
@@ -30177,7 +30177,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#FLG06")
+					(reference "#FLG04")
 					(unit 1)
 				)
 			)
@@ -30193,7 +30193,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "38d1539a-e6df-42df-b1c5-61e38a6301e0")
-		(property "Reference" "#PWR023"
+		(property "Reference" "#PWR03"
 			(at 35.56 69.85 0)
 			(effects
 				(font
@@ -30243,7 +30243,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR023")
+					(reference "#PWR03")
 					(unit 1)
 				)
 			)
@@ -30325,7 +30325,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3a674d0c-80e6-40ad-bb12-5ac23580cf42")
-		(property "Reference" "#FLG02"
+		(property "Reference" "#FLG07"
 			(at 298.45 98.425 0)
 			(effects
 				(font
@@ -30375,7 +30375,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#FLG02")
+					(reference "#FLG07")
 					(unit 1)
 				)
 			)
@@ -30391,7 +30391,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3afeceed-e29b-4109-8824-c37743027145")
-		(property "Reference" "#PWR019"
+		(property "Reference" "#PWR06"
 			(at 83.82 180.34 0)
 			(effects
 				(font
@@ -30441,7 +30441,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR019")
+					(reference "#PWR06")
 					(unit 1)
 				)
 			)
@@ -30457,7 +30457,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3b347f45-1cae-4c2e-925d-d3293f4ca0bb")
-		(property "Reference" "#PWR053"
+		(property "Reference" "#PWR045"
 			(at 353.06 251.46 0)
 			(effects
 				(font
@@ -30507,7 +30507,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR053")
+					(reference "#PWR045")
 					(unit 1)
 				)
 			)
@@ -30523,7 +30523,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "40f570f4-f1fb-410b-a224-183f984dad68")
-		(property "Reference" "R1"
+		(property "Reference" "R4"
 			(at 133.35 40.6399 0)
 			(effects
 				(font
@@ -30541,7 +30541,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 130.81 41.91 0)
 			(effects
 				(font
@@ -30577,7 +30577,7 @@
 		(instances
 			(project ""
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R1")
+					(reference "R4")
 					(unit 1)
 				)
 			)
@@ -30593,7 +30593,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "418b2c45-6b89-437b-bd10-b65d6bb7dc19")
-		(property "Reference" "R20"
+		(property "Reference" "R24"
 			(at 308.61 115.5699 0)
 			(effects
 				(font
@@ -30611,7 +30611,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 306.07 116.84 0)
 			(effects
 				(font
@@ -30647,7 +30647,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R20")
+					(reference "R24")
 					(unit 1)
 				)
 			)
@@ -30663,7 +30663,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "41c247b3-5a23-4076-9a8c-8d5fe0accfa1")
-		(property "Reference" "R7"
+		(property "Reference" "R14"
 			(at 238.76 110.4899 0)
 			(effects
 				(font
@@ -30681,7 +30681,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 236.22 111.76 0)
 			(effects
 				(font
@@ -30717,7 +30717,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R7")
+					(reference "R14")
 					(unit 1)
 				)
 			)
@@ -30732,7 +30732,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "43a42dd7-f2c1-4b58-99d2-c40269904c15")
-		(property "Reference" "C1"
+		(property "Reference" "C3"
 			(at 245.872 65.278 0)
 			(effects
 				(font
@@ -30750,7 +30750,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 242.57 66.04 0)
 			(effects
 				(font
@@ -30786,7 +30786,7 @@
 		(instances
 			(project ""
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "C1")
+					(reference "C3")
 					(unit 1)
 				)
 			)
@@ -30801,7 +30801,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "44a61717-2d0d-4179-be59-880a9587422d")
-		(property "Reference" "R26"
+		(property "Reference" "R16"
 			(at 252.476 33.782 90)
 			(effects
 				(font
@@ -30817,7 +30817,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 254 49.53 0)
 			(effects
 				(font
@@ -30853,7 +30853,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R26")
+					(reference "R16")
 					(unit 1)
 				)
 			)
@@ -30869,7 +30869,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4731c36b-e2e0-4de4-85a1-ff433a635ce5")
-		(property "Reference" "#PWR012"
+		(property "Reference" "#PWR013"
 			(at 130.81 40.64 0)
 			(effects
 				(font
@@ -30919,7 +30919,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR012")
+					(reference "#PWR013")
 					(unit 1)
 				)
 			)
@@ -30950,7 +30950,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "NetTie:NetTie-2_SMD_Pad0.5mm"
 			(at 347.98 60.96 0)
 			(effects
 				(font
@@ -31002,7 +31002,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "48b74b5d-25c0-4e92-86d8-7a819d85d140")
-		(property "Reference" "#PWR013"
+		(property "Reference" "#PWR050"
 			(at 377.19 160.02 0)
 			(effects
 				(font
@@ -31052,7 +31052,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR013")
+					(reference "#PWR050")
 					(unit 1)
 				)
 			)
@@ -31068,7 +31068,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4b74ee62-c2a3-4cab-a8ec-6c52c1296035")
-		(property "Reference" "#PWR052"
+		(property "Reference" "#PWR044"
 			(at 350.52 231.14 0)
 			(effects
 				(font
@@ -31118,7 +31118,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR052")
+					(reference "#PWR044")
 					(unit 1)
 				)
 			)
@@ -31134,7 +31134,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4dceca3c-3836-427f-b631-ad4c71dd3358")
-		(property "Reference" "#PWR08"
+		(property "Reference" "#PWR09"
 			(at 107.95 39.37 0)
 			(effects
 				(font
@@ -31184,7 +31184,7 @@
 		(instances
 			(project ""
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR08")
+					(reference "#PWR09")
 					(unit 1)
 				)
 			)
@@ -31200,7 +31200,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "51b56a05-e3ab-44dc-828c-f0b30bad4c8d")
-		(property "Reference" "#FLG012"
+		(property "Reference" "#FLG013"
 			(at 389.89 36.195 0)
 			(effects
 				(font
@@ -31250,7 +31250,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#FLG012")
+					(reference "#FLG013")
 					(unit 1)
 				)
 			)
@@ -31354,7 +31354,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "53a33ec4-6ed6-4392-8c8a-068924eaec18")
-		(property "Reference" "#PWR011"
+		(property "Reference" "#PWR043"
 			(at 342.9 168.91 0)
 			(effects
 				(font
@@ -31404,7 +31404,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR011")
+					(reference "#PWR043")
 					(unit 1)
 				)
 			)
@@ -31420,7 +31420,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5591c302-5618-4844-8d4a-fe3cec4ef426")
-		(property "Reference" "#PWR048"
+		(property "Reference" "#PWR032"
 			(at 290.83 113.03 0)
 			(effects
 				(font
@@ -31470,7 +31470,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR048")
+					(reference "#PWR032")
 					(unit 1)
 				)
 			)
@@ -31486,7 +31486,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "592f70b2-4c3f-4d54-b7f2-0ea3b3597345")
-		(property "Reference" "#PWR039"
+		(property "Reference" "#PWR02"
 			(at 21.59 271.78 0)
 			(effects
 				(font
@@ -31536,7 +31536,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR039")
+					(reference "#PWR02")
 					(unit 1)
 				)
 			)
@@ -31552,7 +31552,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5f8ae848-4d06-4835-a0f9-dcc5ecce9d53")
-		(property "Reference" "#PWR050"
+		(property "Reference" "#PWR036"
 			(at 306.07 113.03 0)
 			(effects
 				(font
@@ -31602,7 +31602,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR050")
+					(reference "#PWR036")
 					(unit 1)
 				)
 			)
@@ -31618,7 +31618,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6139b7ab-859f-43a4-91c8-0cc9acd6e53d")
-		(property "Reference" "#PWR024"
+		(property "Reference" "#PWR031"
 			(at 285.75 209.55 0)
 			(effects
 				(font
@@ -31668,7 +31668,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR024")
+					(reference "#PWR031")
 					(unit 1)
 				)
 			)
@@ -31684,7 +31684,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6206b8ed-5d7d-4d5d-95e9-dcc9a74b54fa")
-		(property "Reference" "R3"
+		(property "Reference" "R30"
 			(at 369.57 189.23 90)
 			(effects
 				(font
@@ -31700,7 +31700,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 369.57 194.31 0)
 			(effects
 				(font
@@ -31736,7 +31736,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R3")
+					(reference "R30")
 					(unit 1)
 				)
 			)
@@ -31751,7 +31751,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6232faea-2468-4ef6-84c0-c11b45ce59e0")
-		(property "Reference" "#PWR049"
+		(property "Reference" "#PWR041"
 			(at 334.01 113.03 0)
 			(effects
 				(font
@@ -31801,7 +31801,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR049")
+					(reference "#PWR041")
 					(unit 1)
 				)
 			)
@@ -31817,7 +31817,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "67ac365a-99ca-4052-8b84-985668c6a0b1")
-		(property "Reference" "#PWR051"
+		(property "Reference" "#PWR033"
 			(at 292.1 265.43 0)
 			(effects
 				(font
@@ -31867,7 +31867,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR051")
+					(reference "#PWR033")
 					(unit 1)
 				)
 			)
@@ -32070,7 +32070,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6afcf632-3782-4fd3-b162-b6ab14a191e5")
-		(property "Reference" "#PWR017"
+		(property "Reference" "#PWR052"
 			(at 382.27 210.82 0)
 			(effects
 				(font
@@ -32120,7 +32120,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR017")
+					(reference "#PWR052")
 					(unit 1)
 				)
 			)
@@ -32136,7 +32136,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6b411efc-3e5d-4a3f-93cc-85c13c3f1354")
-		(property "Reference" "#PWR018"
+		(property "Reference" "#PWR049"
 			(at 375.92 198.12 0)
 			(effects
 				(font
@@ -32186,7 +32186,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR018")
+					(reference "#PWR049")
 					(unit 1)
 				)
 			)
@@ -32202,7 +32202,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "71c6c1ad-4e06-4de6-a261-c1ec23ad9508")
-		(property "Reference" "J6"
+		(property "Reference" "J4"
 			(at 285.115 184.15 0)
 			(effects
 				(font
@@ -32218,7 +32218,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical"
 			(at 284.48 191.77 0)
 			(effects
 				(font
@@ -32260,7 +32260,7 @@
 		(instances
 			(project ""
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "J6")
+					(reference "J4")
 					(unit 1)
 				)
 			)
@@ -32276,7 +32276,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "73942051-50f8-4627-a3e1-e3e57fe00c77")
-		(property "Reference" "R16"
+		(property "Reference" "R10"
 			(at 190.5 162.5599 0)
 			(effects
 				(font
@@ -32294,7 +32294,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 187.96 163.83 0)
 			(effects
 				(font
@@ -32330,7 +32330,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R16")
+					(reference "R10")
 					(unit 1)
 				)
 			)
@@ -32345,7 +32345,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "756adecd-0e42-4e96-98fa-3ddc844455d3")
-		(property "Reference" "R29"
+		(property "Reference" "R19"
 			(at 252.476 41.402 90)
 			(effects
 				(font
@@ -32361,7 +32361,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 254 57.15 0)
 			(effects
 				(font
@@ -32397,7 +32397,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R29")
+					(reference "R19")
 					(unit 1)
 				)
 			)
@@ -32413,7 +32413,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "79fa8078-4ea2-4371-ac70-1ac90cf2edfe")
-		(property "Reference" "#PWR033"
+		(property "Reference" "#PWR022"
 			(at 226.06 153.67 0)
 			(effects
 				(font
@@ -32463,7 +32463,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR033")
+					(reference "#PWR022")
 					(unit 1)
 				)
 			)
@@ -32545,7 +32545,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7beff525-9b9d-444a-9a46-432958e08655")
-		(property "Reference" "U8"
+		(property "Reference" "U7"
 			(at 181.61 39.37 0)
 			(effects
 				(font
@@ -32604,7 +32604,7 @@
 		(instances
 			(project ""
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "U8")
+					(reference "U7")
 					(unit 1)
 				)
 			)
@@ -32620,7 +32620,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "81b469c9-89e8-4b00-ab26-5aa24aeccea4")
-		(property "Reference" "R4"
+		(property "Reference" "R22"
 			(at 297.18 201.9299 0)
 			(effects
 				(font
@@ -32638,7 +32638,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 294.64 203.2 0)
 			(effects
 				(font
@@ -32674,7 +32674,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R4")
+					(reference "R22")
 					(unit 1)
 				)
 			)
@@ -32690,7 +32690,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "853fd28a-6d23-4686-bd6a-cc6b96038f50")
-		(property "Reference" "R5"
+		(property "Reference" "R23"
 			(at 306.07 201.9299 0)
 			(effects
 				(font
@@ -32708,7 +32708,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 303.53 203.2 0)
 			(effects
 				(font
@@ -32744,7 +32744,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R5")
+					(reference "R23")
 					(unit 1)
 				)
 			)
@@ -32760,7 +32760,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "86607c6c-97cc-49bc-b158-8b1aa0d9e887")
-		(property "Reference" "C5"
+		(property "Reference" "C2"
 			(at 210.82 53.3462 0)
 			(effects
 				(font
@@ -32778,7 +32778,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 208.28 54.61 0)
 			(effects
 				(font
@@ -32814,7 +32814,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "C5")
+					(reference "C2")
 					(unit 1)
 				)
 			)
@@ -32829,7 +32829,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8687a3ba-6cb1-496c-ab0f-39d9c837c7e7")
-		(property "Reference" "R18"
+		(property "Reference" "R2"
 			(at 107.696 269.494 0)
 			(effects
 				(font
@@ -32847,7 +32847,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 113.03 270.51 0)
 			(effects
 				(font
@@ -32883,7 +32883,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R18")
+					(reference "R2")
 					(unit 1)
 				)
 			)
@@ -32899,7 +32899,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8859859c-f5a0-4b38-bb12-de5117432b6e")
-		(property "Reference" "NT3"
+		(property "Reference" "NT2"
 			(at 350.52 36.83 0)
 			(effects
 				(font
@@ -32915,7 +32915,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "NetTie:NetTie-2_SMD_Pad0.5mm"
 			(at 350.52 41.91 0)
 			(effects
 				(font
@@ -32951,7 +32951,7 @@
 		(instances
 			(project ""
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "NT3")
+					(reference "NT2")
 					(unit 1)
 				)
 			)
@@ -32967,7 +32967,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8a3a9512-b32f-4c8e-b8a8-47eee6e56a4e")
-		(property "Reference" "R15"
+		(property "Reference" "R8"
 			(at 180.34 162.5599 0)
 			(effects
 				(font
@@ -32985,7 +32985,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 177.8 163.83 0)
 			(effects
 				(font
@@ -33021,7 +33021,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R15")
+					(reference "R8")
 					(unit 1)
 				)
 			)
@@ -33036,7 +33036,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8b878978-d2b5-4f70-afc5-88077758c650")
-		(property "Reference" "#PWR02"
+		(property "Reference" "#PWR040"
 			(at 332.74 163.83 0)
 			(effects
 				(font
@@ -33086,7 +33086,7 @@
 		(instances
 			(project ""
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR02")
+					(reference "#PWR040")
 					(unit 1)
 				)
 			)
@@ -33120,7 +33120,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 204.47 144.78 0)
 			(effects
 				(font
@@ -33172,7 +33172,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8eddda73-02bd-45ef-97ba-f015fa5b3021")
-		(property "Reference" "#FLG03"
+		(property "Reference" "#FLG02"
 			(at 261.62 38.735 0)
 			(effects
 				(font
@@ -33222,7 +33222,7 @@
 		(instances
 			(project ""
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#FLG03")
+					(reference "#FLG02")
 					(unit 1)
 				)
 			)
@@ -33238,7 +33238,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8ff870f6-c2d8-4e32-8a7e-ab43351dd150")
-		(property "Reference" "#PWR022"
+		(property "Reference" "#PWR028"
 			(at 252.73 74.93 0)
 			(effects
 				(font
@@ -33288,7 +33288,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR022")
+					(reference "#PWR028")
 					(unit 1)
 				)
 			)
@@ -33304,7 +33304,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "92745f66-6cee-46a7-81e4-03270a2146ac")
-		(property "Reference" "R24"
+		(property "Reference" "R29"
 			(at 359.41 237.49 90)
 			(effects
 				(font
@@ -33320,7 +33320,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 359.41 242.57 0)
 			(effects
 				(font
@@ -33356,7 +33356,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R24")
+					(reference "R29")
 					(unit 1)
 				)
 			)
@@ -33372,7 +33372,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "940121f3-cb3d-468e-9652-f4ce7284159a")
-		(property "Reference" "#PWR09"
+		(property "Reference" "#PWR021"
 			(at 226.06 48.26 0)
 			(effects
 				(font
@@ -33422,7 +33422,7 @@
 		(instances
 			(project ""
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR09")
+					(reference "#PWR021")
 					(unit 1)
 				)
 			)
@@ -33438,7 +33438,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "956851a1-2944-4cc3-82ce-fbaa8ef26c67")
-		(property "Reference" "#PWR038"
+		(property "Reference" "#PWR015"
 			(at 144.78 238.76 0)
 			(effects
 				(font
@@ -33488,7 +33488,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR038")
+					(reference "#PWR015")
 					(unit 1)
 				)
 			)
@@ -33503,7 +33503,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9988beef-b522-4532-b178-e117092789c9")
-		(property "Reference" "#PWR020"
+		(property "Reference" "#PWR047"
 			(at 359.41 191.77 0)
 			(effects
 				(font
@@ -33553,7 +33553,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR020")
+					(reference "#PWR047")
 					(unit 1)
 				)
 			)
@@ -33569,7 +33569,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9aaaed3e-3f07-4b79-a95a-e123f37666fb")
-		(property "Reference" "C10"
+		(property "Reference" "C5"
 			(at 294.64 255.2635 0)
 			(effects
 				(font
@@ -33587,7 +33587,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 292.1 256.54 0)
 			(effects
 				(font
@@ -33623,7 +33623,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "C10")
+					(reference "C5")
 					(unit 1)
 				)
 			)
@@ -33639,7 +33639,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9c64af4e-1806-443d-ab78-0fa4384230e3")
-		(property "Reference" "#PWR037"
+		(property "Reference" "#PWR017"
 			(at 154.94 60.96 0)
 			(effects
 				(font
@@ -33689,7 +33689,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR037")
+					(reference "#PWR017")
 					(unit 1)
 				)
 			)
@@ -33705,7 +33705,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9d547e53-7a0a-426e-bd5c-5d87b5d0e06e")
-		(property "Reference" "R22"
+		(property "Reference" "R26"
 			(at 336.55 115.5699 0)
 			(effects
 				(font
@@ -33723,7 +33723,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 334.01 116.84 0)
 			(effects
 				(font
@@ -33759,7 +33759,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R22")
+					(reference "R26")
 					(unit 1)
 				)
 			)
@@ -33774,7 +33774,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9f48aea5-f27b-4447-9d9a-1a132470be3c")
-		(property "Reference" "R28"
+		(property "Reference" "R18"
 			(at 252.476 38.862 90)
 			(effects
 				(font
@@ -33790,7 +33790,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 254 54.61 0)
 			(effects
 				(font
@@ -33826,7 +33826,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R28")
+					(reference "R18")
 					(unit 1)
 				)
 			)
@@ -33860,7 +33860,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 213.36 144.78 0)
 			(effects
 				(font
@@ -33912,7 +33912,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9fd41b82-6b94-4a31-84fd-a3826004e01b")
-		(property "Reference" "U4"
+		(property "Reference" "U8"
 			(at 243.84 233.68 0)
 			(effects
 				(font
@@ -34011,7 +34011,7 @@
 		(instances
 			(project ""
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "U4")
+					(reference "U8")
 					(unit 1)
 				)
 			)
@@ -34027,7 +34027,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a058c529-36f7-4dbb-9dd7-348368c71177")
-		(property "Reference" "#PWR032"
+		(property "Reference" "#PWR04"
 			(at 76.2 238.76 0)
 			(effects
 				(font
@@ -34077,7 +34077,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR032")
+					(reference "#PWR04")
 					(unit 1)
 				)
 			)
@@ -34093,7 +34093,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a32e6636-7b5c-405e-af29-3f86828bb092")
-		(property "Reference" "U2"
+		(property "Reference" "U4"
 			(at 127 204.47 0)
 			(effects
 				(font
@@ -34165,7 +34165,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "U2")
+					(reference "U4")
 					(unit 1)
 				)
 			)
@@ -34181,7 +34181,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a4350a9d-1c11-466a-a4c8-eca4e3e59535")
-		(property "Reference" "#PWR027"
+		(property "Reference" "#PWR054"
 			(at 400.05 64.77 0)
 			(effects
 				(font
@@ -34231,7 +34231,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR027")
+					(reference "#PWR054")
 					(unit 1)
 				)
 			)
@@ -34246,7 +34246,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a49e28db-b47b-4abf-87d2-53ff4329ab9f")
-		(property "Reference" "J7"
+		(property "Reference" "J9"
 			(at 364.744 181.102 0)
 			(effects
 				(font
@@ -34262,7 +34262,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical"
 			(at 350.52 201.93 0)
 			(effects
 				(font
@@ -34310,7 +34310,7 @@
 		(instances
 			(project ""
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "J7")
+					(reference "J9")
 					(unit 1)
 				)
 			)
@@ -34326,7 +34326,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a5bd326b-b8c3-4704-9756-7a5340175e8b")
-		(property "Reference" "#FLG04"
+		(property "Reference" "#FLG010"
 			(at 327.66 98.425 0)
 			(effects
 				(font
@@ -34376,7 +34376,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#FLG04")
+					(reference "#FLG010")
 					(unit 1)
 				)
 			)
@@ -34392,7 +34392,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a7ef32be-709d-4394-a799-ce204a94e812")
-		(property "Reference" "#PWR05"
+		(property "Reference" "#PWR042"
 			(at 337.82 43.18 0)
 			(effects
 				(font
@@ -34442,7 +34442,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR05")
+					(reference "#PWR042")
 					(unit 1)
 				)
 			)
@@ -34476,7 +34476,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_SMD:LED_1206_3216Metric"
 			(at 334.01 123.19 0)
 			(effects
 				(font
@@ -34528,7 +34528,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "aa635589-ba62-43f4-b22e-91cdaf31389a")
-		(property "Reference" "#PWR047"
+		(property "Reference" "#PWR037"
 			(at 320.04 113.03 0)
 			(effects
 				(font
@@ -34578,7 +34578,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR047")
+					(reference "#PWR037")
 					(unit 1)
 				)
 			)
@@ -34593,7 +34593,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "aa729f80-d70d-43ea-aed6-9afc13cf04bc")
-		(property "Reference" "R17"
+		(property "Reference" "R3"
 			(at 117.856 271.018 90)
 			(effects
 				(font
@@ -34609,7 +34609,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 118.11 266.7 0)
 			(effects
 				(font
@@ -34645,7 +34645,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R17")
+					(reference "R3")
 					(unit 1)
 				)
 			)
@@ -34661,7 +34661,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "acbc2ce4-503a-479d-908d-f231b12537ee")
-		(property "Reference" "#PWR043"
+		(property "Reference" "#PWR029"
 			(at 267.97 251.46 0)
 			(effects
 				(font
@@ -34711,7 +34711,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR043")
+					(reference "#PWR029")
 					(unit 1)
 				)
 			)
@@ -34727,7 +34727,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ad9322c4-529f-4267-a9ba-9de3e345d0c4")
-		(property "Reference" "#PWR03"
+		(property "Reference" "#PWR034"
 			(at 295.91 162.56 0)
 			(effects
 				(font
@@ -34777,7 +34777,7 @@
 		(instances
 			(project ""
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR03")
+					(reference "#PWR034")
 					(unit 1)
 				)
 			)
@@ -34793,7 +34793,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "afe23d8b-f0eb-437b-8477-adb38c36c327")
-		(property "Reference" "R2"
+		(property "Reference" "R28"
 			(at 361.95 189.2299 0)
 			(effects
 				(font
@@ -34811,7 +34811,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 359.41 190.5 0)
 			(effects
 				(font
@@ -34847,7 +34847,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R2")
+					(reference "R28")
 					(unit 1)
 				)
 			)
@@ -34863,7 +34863,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b4e258e6-1f23-4189-aede-28d6f96473cf")
-		(property "Reference" "#PWR07"
+		(property "Reference" "#PWR018"
 			(at 201.93 63.5 0)
 			(effects
 				(font
@@ -34913,7 +34913,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR07")
+					(reference "#PWR018")
 					(unit 1)
 				)
 			)
@@ -34929,7 +34929,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b8c7a1fb-11bf-4c40-bc3c-0742920e16e8")
-		(property "Reference" "#PWR021"
+		(property "Reference" "#PWR027"
 			(at 242.57 74.93 0)
 			(effects
 				(font
@@ -34979,7 +34979,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR021")
+					(reference "#PWR027")
 					(unit 1)
 				)
 			)
@@ -34995,7 +34995,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b9138c20-c18d-4879-9f89-78779250dca5")
-		(property "Reference" "#PWR014"
+		(property "Reference" "#PWR051"
 			(at 377.19 166.37 0)
 			(effects
 				(font
@@ -35045,7 +35045,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR014")
+					(reference "#PWR051")
 					(unit 1)
 				)
 			)
@@ -35061,7 +35061,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b9373b8a-5f8c-42c2-8c6a-288b121e73b0")
-		(property "Reference" "U7"
+		(property "Reference" "U5"
 			(at 130.81 237.49 0)
 			(effects
 				(font
@@ -35123,7 +35123,7 @@
 		(instances
 			(project ""
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "U7")
+					(reference "U5")
 					(unit 1)
 				)
 			)
@@ -35138,7 +35138,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b9f3e251-3dd2-40e2-ba78-55fdbadbbf4f")
-		(property "Reference" "J5"
+		(property "Reference" "J8"
 			(at 358.648 149.606 0)
 			(effects
 				(font
@@ -35154,7 +35154,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical"
 			(at 350.52 161.29 0)
 			(effects
 				(font
@@ -35199,7 +35199,7 @@
 		(instances
 			(project ""
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "J5")
+					(reference "J8")
 					(unit 1)
 				)
 			)
@@ -35215,7 +35215,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "baa1844a-483f-4a30-9152-91a8a2e2bd07")
-		(property "Reference" "#PWR06"
+		(property "Reference" "#PWR026"
 			(at 242.57 43.18 0)
 			(effects
 				(font
@@ -35265,7 +35265,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR06")
+					(reference "#PWR026")
 					(unit 1)
 				)
 			)
@@ -35281,7 +35281,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "bb066999-f7dc-4586-8b97-e2bd6faed78f")
-		(property "Reference" "C6"
+		(property "Reference" "C1"
 			(at 157.48 50.8062 0)
 			(effects
 				(font
@@ -35299,7 +35299,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 154.94 52.07 0)
 			(effects
 				(font
@@ -35335,7 +35335,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "C6")
+					(reference "C1")
 					(unit 1)
 				)
 			)
@@ -35351,7 +35351,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "bb8f3265-f8ab-49aa-9be7-c0bb98653000")
-		(property "Reference" "#PWR041"
+		(property "Reference" "#PWR05"
 			(at 76.2 274.32 0)
 			(effects
 				(font
@@ -35401,7 +35401,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR041")
+					(reference "#PWR05")
 					(unit 1)
 				)
 			)
@@ -35417,7 +35417,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "bdd9e56a-87c0-4201-9550-8c7ecc48a95c")
-		(property "Reference" "#FLG01"
+		(property "Reference" "#FLG05"
 			(at 281.94 98.425 0)
 			(effects
 				(font
@@ -35467,7 +35467,7 @@
 		(instances
 			(project ""
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#FLG01")
+					(reference "#FLG05")
 					(unit 1)
 				)
 			)
@@ -35482,7 +35482,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c001f328-be94-498c-b929-3308ab3cf0ef")
-		(property "Reference" "J4"
+		(property "Reference" "J5"
 			(at 315.722 152.654 0)
 			(effects
 				(font
@@ -35498,7 +35498,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
 			(at 312.42 160.02 0)
 			(effects
 				(font
@@ -35534,7 +35534,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "J4")
+					(reference "J5")
 					(unit 1)
 				)
 			)
@@ -35550,7 +35550,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c5d3384d-f40d-4e22-a756-692a161f8a75")
-		(property "Reference" "#PWR026"
+		(property "Reference" "#PWR023"
 			(at 229.87 120.65 0)
 			(effects
 				(font
@@ -35600,7 +35600,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR026")
+					(reference "#PWR023")
 					(unit 1)
 				)
 			)
@@ -35615,7 +35615,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "ca27d7e0-03d7-4aee-b006-5b63ea0e5353")
-		(property "Reference" "R30"
+		(property "Reference" "R20"
 			(at 252.476 43.942 90)
 			(effects
 				(font
@@ -35631,7 +35631,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 254 59.69 0)
 			(effects
 				(font
@@ -35667,7 +35667,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R30")
+					(reference "R20")
 					(unit 1)
 				)
 			)
@@ -35683,7 +35683,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "cbe7715b-83fc-4a86-bd08-e0bf64a4f640")
-		(property "Reference" "U6"
+		(property "Reference" "U3"
 			(at 59.69 100.33 0)
 			(effects
 				(font
@@ -35881,7 +35881,7 @@
 		(instances
 			(project ""
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "U6")
+					(reference "U3")
 					(unit 1)
 				)
 			)
@@ -35897,7 +35897,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ce055d24-5616-485c-8f9f-d0ed14bbab00")
-		(property "Reference" "R21"
+		(property "Reference" "R25"
 			(at 322.58 115.5699 0)
 			(effects
 				(font
@@ -35915,7 +35915,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 320.04 116.84 0)
 			(effects
 				(font
@@ -35951,7 +35951,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R21")
+					(reference "R25")
 					(unit 1)
 				)
 			)
@@ -35967,7 +35967,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d7c08ff5-abe9-4377-a5d3-cbd9ea96c3a0")
-		(property "Reference" "U5"
+		(property "Reference" "U2"
 			(at 58.42 240.03 0)
 			(effects
 				(font
@@ -36039,7 +36039,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "U5")
+					(reference "U2")
 					(unit 1)
 				)
 			)
@@ -36055,7 +36055,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "dacf88b7-823e-43f9-a334-26088fa8a1b8")
-		(property "Reference" "C2"
+		(property "Reference" "C4"
 			(at 255.27 64.7762 0)
 			(effects
 				(font
@@ -36073,7 +36073,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 252.73 66.04 0)
 			(effects
 				(font
@@ -36109,7 +36109,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "C2")
+					(reference "C4")
 					(unit 1)
 				)
 			)
@@ -36125,7 +36125,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "db2a47ea-4444-4535-8f4b-f40d34c74c54")
-		(property "Reference" "R8"
+		(property "Reference" "R5"
 			(at 168.91 143.5099 0)
 			(effects
 				(font
@@ -36143,7 +36143,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 166.37 144.78 0)
 			(effects
 				(font
@@ -36179,7 +36179,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R8")
+					(reference "R5")
 					(unit 1)
 				)
 			)
@@ -36195,7 +36195,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "db96a965-55ad-4df9-bce1-5952574bbbe7")
-		(property "Reference" "#FLG010"
+		(property "Reference" "#FLG01"
 			(at 93.98 33.655 0)
 			(effects
 				(font
@@ -36245,7 +36245,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#FLG010")
+					(reference "#FLG01")
 					(unit 1)
 				)
 			)
@@ -36261,7 +36261,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "dc9791c9-321c-4c6f-8139-013a20f2598c")
-		(property "Reference" "R23"
+		(property "Reference" "R27"
 			(at 350.52 115.5699 0)
 			(effects
 				(font
@@ -36279,7 +36279,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 347.98 116.84 0)
 			(effects
 				(font
@@ -36315,7 +36315,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R23")
+					(reference "R27")
 					(unit 1)
 				)
 			)
@@ -36331,7 +36331,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "dd5efbfa-4e36-4443-a1db-1ceeb343edd7")
-		(property "Reference" "#PWR01"
+		(property "Reference" "#PWR08"
 			(at 92.71 69.85 0)
 			(effects
 				(font
@@ -36381,7 +36381,7 @@
 		(instances
 			(project ""
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR01")
+					(reference "#PWR08")
 					(unit 1)
 				)
 			)
@@ -36397,7 +36397,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ddbbc062-dbb4-4bde-b7e1-12c91dfc1f86")
-		(property "Reference" "#PWR029"
+		(property "Reference" "#PWR025"
 			(at 236.22 120.65 0)
 			(effects
 				(font
@@ -36447,7 +36447,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR029")
+					(reference "#PWR025")
 					(unit 1)
 				)
 			)
@@ -36463,7 +36463,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e06c0dd2-a4b4-4326-bde1-ea6ae1d2be21")
-		(property "Reference" "#PWR054"
+		(property "Reference" "#PWR014"
 			(at 134.62 123.19 0)
 			(effects
 				(font
@@ -36513,7 +36513,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR054")
+					(reference "#PWR014")
 					(unit 1)
 				)
 			)
@@ -36529,7 +36529,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e0a0f2e9-ee50-4498-ba13-c0cdca83b436")
-		(property "Reference" "#PWR016"
+		(property "Reference" "#PWR038"
 			(at 322.58 193.04 0)
 			(effects
 				(font
@@ -36579,7 +36579,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR016")
+					(reference "#PWR038")
 					(unit 1)
 				)
 			)
@@ -36612,7 +36612,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_SMD:LED_1206_3216Metric"
 			(at 320.04 123.19 0)
 			(effects
 				(font
@@ -36730,7 +36730,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e50e90f4-0e2e-4b5a-b39d-b3f3cfb9e875")
-		(property "Reference" "#PWR030"
+		(property "Reference" "#PWR01"
 			(at 21.59 236.22 0)
 			(effects
 				(font
@@ -36780,7 +36780,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR030")
+					(reference "#PWR01")
 					(unit 1)
 				)
 			)
@@ -36796,7 +36796,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e5217e5e-2135-41b7-a1e5-638283112c2f")
-		(property "Reference" "R19"
+		(property "Reference" "R21"
 			(at 293.37 115.5699 0)
 			(effects
 				(font
@@ -36814,7 +36814,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 290.83 116.84 0)
 			(effects
 				(font
@@ -36850,7 +36850,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R19")
+					(reference "R21")
 					(unit 1)
 				)
 			)
@@ -36884,7 +36884,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_SMD:LED_1206_3216Metric"
 			(at 290.83 123.19 0)
 			(effects
 				(font
@@ -36936,7 +36936,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e7768bba-55c8-4a9c-bc10-0f7be13d4bf9")
-		(property "Reference" "#PWR015"
+		(property "Reference" "#PWR039"
 			(at 322.58 199.39 0)
 			(effects
 				(font
@@ -36986,7 +36986,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR015")
+					(reference "#PWR039")
 					(unit 1)
 				)
 			)
@@ -37002,7 +37002,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e7fb8180-c1c8-4f22-a8fb-320a8d63c051")
-		(property "Reference" "#PWR044"
+		(property "Reference" "#PWR016"
 			(at 148.59 266.7 0)
 			(effects
 				(font
@@ -37052,7 +37052,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR044")
+					(reference "#PWR016")
 					(unit 1)
 				)
 			)
@@ -37067,7 +37067,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "eb8fbf10-6b5f-4a12-9578-427b344ff49b")
-		(property "Reference" "R27"
+		(property "Reference" "R17"
 			(at 252.476 36.322 90)
 			(effects
 				(font
@@ -37083,7 +37083,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 254 52.07 0)
 			(effects
 				(font
@@ -37119,7 +37119,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R27")
+					(reference "R17")
 					(unit 1)
 				)
 			)
@@ -37135,7 +37135,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ecfaa160-75ee-4e89-8f9a-b4ec30290358")
-		(property "Reference" "#FLG07"
+		(property "Reference" "#FLG06"
 			(at 292.1 38.735 0)
 			(effects
 				(font
@@ -37185,7 +37185,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#FLG07")
+					(reference "#FLG06")
 					(unit 1)
 				)
 			)
@@ -37201,7 +37201,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f00a03ce-fb52-4dbd-abcc-4212e8244feb")
-		(property "Reference" "R10"
+		(property "Reference" "R9"
 			(at 186.69 143.5099 0)
 			(effects
 				(font
@@ -37219,7 +37219,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 184.15 144.78 0)
 			(effects
 				(font
@@ -37255,7 +37255,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "R10")
+					(reference "R9")
 					(unit 1)
 				)
 			)
@@ -37271,7 +37271,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f0b0605c-8783-4709-b5b3-a2904ab72b0c")
-		(property "Reference" "#PWR042"
+		(property "Reference" "#PWR030"
 			(at 267.97 269.24 0)
 			(effects
 				(font
@@ -37321,7 +37321,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR042")
+					(reference "#PWR030")
 					(unit 1)
 				)
 			)
@@ -37355,7 +37355,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_JST:JST_GH_SM03B-GHS-TB_1x03-1MP_P1.25mm_Horizontal"
 			(at 219.71 170.18 0)
 			(effects
 				(font
@@ -37410,7 +37410,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f6577775-d5b3-442c-ad46-815a0bbf8883")
-		(property "Reference" "#FLG013"
+		(property "Reference" "#FLG012"
 			(at 361.95 74.295 0)
 			(effects
 				(font
@@ -37460,7 +37460,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#FLG013")
+					(reference "#FLG012")
 					(unit 1)
 				)
 			)
@@ -37476,7 +37476,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "fd1723d3-7dc8-4d2a-b675-e5ce00995165")
-		(property "Reference" "#PWR04"
+		(property "Reference" "#PWR035"
 			(at 303.53 167.64 0)
 			(effects
 				(font
@@ -37526,7 +37526,7 @@
 		(instances
 			(project "magic dial"
 				(path "/e3208f23-585e-4bc8-a468-9ab509e306d9"
-					(reference "#PWR04")
+					(reference "#PWR035")
 					(unit 1)
 				)
 			)
