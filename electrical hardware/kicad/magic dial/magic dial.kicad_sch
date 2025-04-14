@@ -29405,7 +29405,7 @@
 				)
 			)
 		)
-		(property "Footprint" "21-100586_K2033+1C_ADI"
+		(property "Footprint" "TMC6300_LA_T:21-100586_K2033&plus_1C_ADI-M"
 			(at 157.48 96.52 0)
 			(effects
 				(font
@@ -31282,7 +31282,7 @@
 				)
 			)
 		)
-		(property "Footprint" "PW0008A_N"
+		(property "Footprint" "INA240A1QPWRQ1:PW0008A_M"
 			(at 58.42 222.25 0)
 			(effects
 				(font
@@ -33928,7 +33928,7 @@
 				)
 			)
 		)
-		(property "Footprint" "QFN-16_MAQ430"
+		(property "Footprint" "MAQ430GQE_AEC1_Z:QFN-16_MAQ430-M"
 			(at 223.52 243.84 0)
 			(effects
 				(font
@@ -34109,7 +34109,7 @@
 				)
 			)
 		)
-		(property "Footprint" "PW0008A_N"
+		(property "Footprint" "INA240A1QPWRQ1:PW0008A_M"
 			(at 127 222.25 0)
 			(effects
 				(font
@@ -35077,7 +35077,7 @@
 				)
 			)
 		)
-		(property "Footprint" "MCP6021T-E_OT:SOT95P270X145-5N"
+		(property "Footprint" "MCP6021T_E_OT:SOT95P270X145-5N"
 			(at 130.81 252.73 0)
 			(effects
 				(font
@@ -35699,7 +35699,7 @@
 				)
 			)
 		)
-		(property "Footprint" "ESP32-C6-WROOM-1-N8:XCVR_ESP32-C6-WROOM-1-N8"
+		(property "Footprint" "ESP32_C6_WROOM_1_N8:XCVR_ESP32-C6-WROOM-1-N8"
 			(at 59.69 128.27 0)
 			(effects
 				(font
@@ -35983,7 +35983,7 @@
 				)
 			)
 		)
-		(property "Footprint" "PW0008A_N"
+		(property "Footprint" "INA240A1QPWRQ1:PW0008A_M"
 			(at 58.42 257.81 0)
 			(effects
 				(font
