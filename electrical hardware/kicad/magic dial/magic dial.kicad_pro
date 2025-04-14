@@ -468,7 +468,7 @@
       "netlist": "",
       "plot": "",
       "pos_files": "",
-      "specctra_dsn": "",
+      "specctra_dsn": "DSN for AUTOROUTE/magic dial.dsn",
       "step": "",
       "svg": "",
       "vrml": ""
