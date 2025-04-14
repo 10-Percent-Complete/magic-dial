@@ -1,6 +1,8 @@
 #![no_std]
 #![no_main]
 
+use core::f32::consts::PI;
+
 use drivers::tmag5273::{
     AngleEnable, ConversionRate, CrcEn, HystersisThreshold, I2cGlitchFilter, I2cReadMode, LowMode,
     MagneticConfig, MagnitudeGainChannel, OpMode, SleepConfig, TempCoeff,
@@ -101,52 +103,49 @@ fn main() -> ! {
     //  * Enable XY channels
     //  * Enable angle conversion channels XY
     //  **/
-    // magnetic_sensor
-    //     .config_device_1(
-    //         CrcEn::Off,
-    //         TempCoeff::_0,
-    //         ConversionRate::_32x,
-    //         I2cReadMode::I2cRead3,
-    //     )
-    //     .unwrap();
+    magnetic_sensor
+        .config_device_1(
+            CrcEn::Off,
+            TempCoeff::_0,
+            ConversionRate::_32x,
+            I2cReadMode::I2cRead3,
+        )
+        .unwrap();
 
-    // magnetic_sensor
-    //     .config_device_2(
-    //         HystersisThreshold::TwoComplement,
-    //         LowMode::LowNoise,
-    //         I2cGlitchFilter::On,
-    //         TriggerMode::Default,
-    //         OpMode::Continuous,
-    //     )
-    //     .unwrap();
+    magnetic_sensor
+        .config_device_2(
+            HystersisThreshold::TwoComplement,
+            LowMode::LowNoise,
+            I2cGlitchFilter::On,
+            TriggerMode::Default,
+            OpMode::Continuous,
+        )
+        .unwrap();
 
-    // magnetic_sensor
-    //     .config_sensor_1(MagneticConfig::EnableXYX, SleepConfig::Sleep1ms)
-    //     .unwrap();
+    magnetic_sensor
+        .config_sensor_1(MagneticConfig::EnableXYX, SleepConfig::Sleep1ms)
+        .unwrap();
 
-    // magnetic_sensor
-    //     .config_sensor_2(
-    //         ThresholdXCount::One,
-    //         ThresholdTriggerDirection::Below,
-    //         MagnitudeGainChannel::One,
-    //         AngleEnable::EnableXY,
-    //         XYRange::Default,
-    //         ZRange::Default,
-    //     )
-    //     .unwrap();
+    magnetic_sensor
+        .config_sensor_2(
+            ThresholdXCount::One,
+            ThresholdTriggerDirection::Below,
+            MagnitudeGainChannel::One,
+            AngleEnable::EnableXY,
+            XYRange::Default,
+            ZRange::Default,
+        )
+        .unwrap();
 
     /* Initialize motor controller */
     let mut controller = Control::new(
         pwm_phases,
         motor,
         magnetic_sensor,
-        control::CommutationMode::Trapezoid120,
         control::ControllerType::velocity_open_loop,
     );
 
-    let mut target_velocity: f32 = PERIOD as f32 / 2.0;
-    // let step_per_rev = 4 * 6;
-    // let step_time = (60000.0 / (step_per_rev as f32)) as u32;
+    let mut target_angle = PI;
 
     let timg0 = TimerGroup::new(peripherals.TIMG0);
     let mut periodic = PeriodicTimer::new(timg0.timer0);
@@ -155,18 +154,19 @@ fn main() -> ! {
     // let mut byte = [0u8; 1];
 
     loop {
-        match periodic.wait() {
-            Ok(()) => {
-                controller.exec(target_velocity);
-            }
-            Err(nb::Error::WouldBlock) => {
-                if btn_13.is_low() && target_velocity < (PERIOD as f32) {
-                    target_velocity += 1.0;
-                } else if btn_14.is_low() && target_velocity > 0.0 {
-                    target_velocity -= 1.0;
-                }
-            }
-        }
+        controller.exec(target_angle);
+        // match periodic.wait() {
+        //     Ok(()) => {
+        //         controller.exec(target_velocity);
+        //     }
+        //     Err(nb::Error::WouldBlock) => {
+        //         if btn_13.is_low() && target_velocity < (PERIOD as f32) {
+        //             target_velocity += 1.0;
+        //         } else if btn_14.is_low() && target_velocity > 0.0 {
+        //             target_velocity -= 1.0;
+        //         }
+        //     }
+        // }
 
         /* Print data serially */
         // info!(
